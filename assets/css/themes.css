@@ -1,62 +1,85 @@
 /* assets/css/themes.css */
-
-/* Dyrektywy Tailwind - jeśli używasz Tailwind CSS i to jest Twój główny plik CSS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Domyślny motyw (może być jeden z poniższych lub zupełnie inny fallback) */
-    /* Tutaj ustawiam 'oceanBlue' jako domyślny dla przykładu */
-    --color-primary: 34, 102, 153; /* RGB dla oceanBlue - Główny (np. przyciski, akcenty) */
-    --color-secondary: 17, 51, 85; /* RGB dla oceanBlue - Drugorzędny */
-    --color-accent: 255, 107, 107; /* RGB dla oceanBlue - Akcent (np. notyfikacje, specjalne elementy) */
+    /* Domyślny motyw = Jasny */
+    /* Nowa paleta kolorów dla motywu jasnego */
+    --color-primary: 33 179 113; /* Akcent będzie teraz naszym 'primary' dla uproszczenia */
+    --color-secondary: 26 142 89; /* Ciemniejszy odcień akcentu jako secondary */
+    --color-accent: 33 179 113; /* Akcent (zielony #21B371) */
 
-    --color-background-primary: 240, 245, 250; /* RGB dla oceanBlue - Tło główne strony */
-    --color-background-secondary: 255, 255, 255; /* RGB dla oceanBlue - Tło dla kart, sekcji */
+    --color-background-primary: 255 255 255; /* Białe tło */
+    --color-background-secondary: 245 245 245; /* Lekko szare tło dla kart/sekcji */
 
-    --color-text-primary: 10, 20, 30; /* RGB dla oceanBlue - Główny tekst */
-    --color-text-secondary: 51, 65, 81; /* RGB dla oceanBlue - Drugorzędny, mniej ważny tekst */
-    --color-text-accent: var(
-      --color-primary
-    ); /* RGB dla oceanBlue - Tekst na przyciskach głównych, lub specjalny */
-    --color-text-on-primary: 255, 255, 255; /* RGB dla oceanBlue - Tekst na elementach z tłem --color-primary */
-    --color-text-on-accent: 255, 255, 255; /* RGB dla oceanBlue - Tekst na elementach z tłem --color-accent */
+    --color-text-primary: 0 0 0; /* Czarny tekst */
+    --color-text-secondary: 80 80 80; /* Ciemnoszary tekst drugorzędny */
+    --color-text-on-primary: 255 255 255; /* Biały tekst na zielonym tle primary */
+    --color-text-on-accent: 255 255 255; /* Biały tekst na zielonym tle accent */
 
-    --border-color: 200, 205, 210; /* RGB dla oceanBlue - Kolor obramowań */
+    --border-color: 220 220 220; /* Jasnoszary border */
+
+    /* Zmienne dla fontów */
+    --font-sans: "Inter", sans-serif;
+    --font-heading: "Dela Gothic One", sans-serif; /* Użyj sans-serif jako fallback */
   }
 
+  /* Możemy pominąć .light, jeśli :root jest identyczny z motywem jasnym */
+  /* Jeśli chcesz mieć explicite .light, skopiuj wartości z :root */
   .light {
-    --color-primary: 34, 102, 153;
-    --color-secondary: 17, 51, 85;
-    --color-accent: 255, 107, 107;
-    --color-background-primary: 240, 245, 250;
-    --color-background-secondary: 255, 255, 255;
-    --color-text-primary: 10, 20, 30;
-    --color-text-secondary: 51, 65, 81;
-    --color-text-accent: var(--color-primary);
-    --color-text-on-primary: 255, 255, 255;
-    --color-text-on-accent: 255, 255, 255;
-    --border-color: 200, 205, 210;
+    --color-primary: 33 179 113;
+    --color-secondary: 26 142 89;
+    --color-accent: 33 179 113;
+    --color-background-primary: 255 255 255;
+    --color-background-secondary: 245 245 245;
+    --color-text-primary: 0 0 0;
+    --color-text-secondary: 80 80 80;
+    --color-text-on-primary: 255 255 255;
+    --color-text-on-accent: 255 255 255;
+    --border-color: 220 220 220;
+
+    --font-sans: "Inter", sans-serif;
+    --font-heading: "Dela Gothic One", sans-serif;
   }
 
   .dark {
-    --color-primary: 34, 139, 34; /* Forest Green */
-    --color-secondary: 22, 88, 22; /* Darker Forest Green */
-    --color-accent: 218, 165, 32; /* Goldenrod - jako akcent */
+    /* Nowa paleta kolorów dla motywu ciemnego */
+    --color-primary: 33 179 113; /* Akcent (zielony #21B371) - może być jaśniejszy dla ciemnego motywu */
+    --color-secondary: 46 203 133; /* Jaśniejszy odcień akcentu */
+    --color-accent: 33 179 113; /* Akcent (zielony #21B371) */
 
-    --color-background-primary: 235, 245, 235; /* Jasne, lekko zielonkawe tło */
-    --color-background-secondary: 250, 255, 250; /* Bardzo jasne tło dla kart */
+    --color-background-secondary: 26 26 26; /* Ciemne tło (#1A1A1A) */
+    --color-background-primary: 40 40 40; /* Ciemniejsze szare tło dla kart/sekcji */
 
-    --color-text-primary: 15, 40, 15; /* Ciemny zielony tekst */
-    --color-text-secondary: 40, 70, 40; /* Mniej intensywny ciemny zielony tekst */
-    --color-text-accent: var(--color-primary);
-    --color-text-on-primary: 230, 255, 230; /* Jasny tekst na zielonym tle */
-    --color-text-on-accent: 20, 20, 20; /* Ciemny tekst na złotym tle */
+    --color-text-primary: 255 255 255; /* Biały tekst */
+    --color-text-secondary: 200 200 200; /* Jasnoszary tekst drugorzędny */
+    --color-text-on-primary: 255 255 255; /* Biały tekst na zielonym tle primary */
+    --color-text-on-accent: 255 255 255; /* Biały tekst na zielonym tle accent */
 
-    --border-color: 180, 200, 180; /* Zielonkawe obramowanie */
+    --border-color: 70 70 70; /* Ciemnoszary border */
+
+    /* Fonty pozostają te same, ale ich kolor jest definiowany przez text-colors */
+    --font-sans: "Inter", sans-serif;
+    --font-heading: "Dela Gothic One", sans-serif;
   }
 
-  /* Możesz dodać więcej motywów tutaj w przyszłości, np. :root[data-theme="darkPurple"] { ... } */
+  /* Ustawienie domyślnego fontu dla body */
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased; /* Lepsze renderowanie fontów */
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Domyślne style dla nagłówków */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    /* Kolor nagłówków będzie dziedziczony z text-primary lub można go ustawić klasą Tailwind */
+  }
 }

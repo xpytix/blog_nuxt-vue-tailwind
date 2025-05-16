@@ -1,5 +1,5 @@
 <template>
-  
+
   <div class="container mx-auto p-4">
     <h1 class="text-4xl font-bold text-center my-8">Mój Super Blog PoC</h1>
 
@@ -65,8 +65,6 @@ useHead({
 
 
 });
-
-
 
 
 </script>

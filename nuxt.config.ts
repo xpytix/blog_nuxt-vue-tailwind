@@ -1,15 +1,27 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+// nuxt.config.ts
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
   modules: ["@nuxt/content", "@nuxtjs/tailwindcss", "@nuxtjs/color-mode"],
   tailwindcss: {
-    // Opcjonalnie: jeśli Twój główny plik CSS nie jest w standardowej lokalizacji
-    // lub nie nazywa się tailwind.css
-    cssPath: "~/assets/css/themes.css", // Upewnij się, że to jest plik z dyrektywami @tailwind i zmiennymi motywów
-    configPath: "tailwind.config", // Domyślna ścieżka do tailwind.config.js/ts
-    // exposeConfig: false, // Domyślnie
-    // injectPosition: 0, // Domyślnie
-    // viewer: true, // Domyślnie w trybie dev
-  }
+    cssPath: "~/assets/css/themes.css",
+    configPath: "tailwind.config",
+  },
+  colorMode: {
+    preference: "system", // Ustawienie początkowe, możesz też dać 'light'
+    fallback: "light", // Jeśli 'system' nie może być określony
+    classSuffix: "", // BARDZO WAŻNE: Zapewnia klasy .light i .dark
+    // storageKey: 'nuxt-color-mode' // Domyślna nazwa klucza w localStorage
+  },
+  googleFonts: {
+    // Konfiguracja dla google-fonts
+    families: {
+      Inter: [400, 500, 600, 700], // Wybierz potrzebne wagi
+      "Dela Gothic One": [400], // Ta czcionka często ma tylko regularną wagę (400)
+    },
+    display: "swap", // Poprawia szybkość ładowania
+    prefetch: true,
+    preconnect: true,
+    preload: true,
+  },
 });
