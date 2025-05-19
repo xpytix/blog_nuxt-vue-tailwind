@@ -21,6 +21,7 @@
 
     --border-color: 220 220 220; /* Jasnoszary border */
 
+        
     /* Zmienne dla fontów */
     --font-sans: "Inter", sans-serif;
     --font-heading: "Dela Gothic One", sans-serif; /* Użyj sans-serif jako fallback */
@@ -40,6 +41,7 @@
     --color-text-on-accent: 255 255 255;
     --border-color: 220 220 220;
 
+
     --font-sans: "Inter", sans-serif;
     --font-heading: "Dela Gothic One", sans-serif;
   }
@@ -50,7 +52,7 @@
     --color-secondary: 46 203 133; /* Jaśniejszy odcień akcentu */
     --color-accent: 33 179 113; /* Akcent (zielony #21B371) */
 
-    --color-background-secondary: 26 26 26; /* Ciemne tło (#1A1A1A) */
+    --color-background-secondary: 000 000 000; /* Ciemne tło (#1A1A1A) */
     --color-background-primary: 40 40 40; /* Ciemniejsze szare tło dla kart/sekcji */
 
     --color-text-primary: 255 255 255; /* Biały tekst */
@@ -59,6 +61,7 @@
     --color-text-on-accent: 255 255 255; /* Biały tekst na zielonym tle accent */
 
     --border-color: 70 70 70; /* Ciemnoszary border */
+
 
     /* Fonty pozostają te same, ale ich kolor jest definiowany przez text-colors */
     --font-sans: "Inter", sans-serif;
