@@ -1,4 +1,3 @@
-// pages/blog/[...slug].vue
 <template>
   <div>
     <div v-if="pending && !page" class="text-center py-20 text-text-secondary">
