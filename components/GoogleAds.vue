@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-background-secondary w-full py-4 my-4">
+    <div class="bg-background-secondary w-full my-4">
       <div class="pl-2 text-xs text-left text-text-secondary mb-1 tracking-wider uppercase">
         <h3>Reklama</h3>
       </div>

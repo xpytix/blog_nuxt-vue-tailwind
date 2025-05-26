@@ -1,3 +1,4 @@
+// pages/index.vue
 <template>
   <div>
     <Head>
@@ -9,7 +10,7 @@
       :articles-data="articles || []"
       :pending="isLoading"
       :error="fetchError"
-      :ads-every-nth="2"
+      :ads-every-nth="3"
     />
 
   </div>
@@ -24,7 +25,7 @@ const { data: articles, pending: isLoading, error: fetchError } = await useAsync
     // Zakładam, że queryCollection to Twoja niestandardowa funkcja do pobierania danych.
     // Upewnij się, że zwraca ona Promise.
     // Parametr 'nuxtApp' (dawniej 'e') jest dostępny, jeśli go potrzebujesz, ale często nie jest konieczny.
-    return queryCollection('blog')
+    return queryCollection('afery')
       // .where('published', '=', true) // Twoje przykładowe warunki
       // .orWhere(query => query.where('featured', '=', true).where('priority', '>', 5))
       .all();

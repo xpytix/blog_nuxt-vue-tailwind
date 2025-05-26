@@ -7,7 +7,8 @@
       </NuxtLink>
 
       <nav class="hidden md:block">
-        <ul class="flex space-x-4 lg:space-x-6 items-center">
+        
+        <ul class="flex space-x-4 lg:space-x-6 items-center">          
           <li v-for="category in categories" :key="category.slug">
             <NuxtLink :to="`/${category.slug}`"
               class="text-text-secondary hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium"
@@ -53,10 +54,13 @@
           {{ category.name }}
         </NuxtLink>
       </nav>
-      <p class="mt-12 text-sm text-text-secondary font-sans" _comment="Upewniłem się, że ten tekst używa font-sans">
+<!-- 
+        <p class="mt-12 text-sm text-text-secondary font-sans" _comment="Upewniłem się, że ten tekst używa font-sans">
         Moodzik &copy; {{ new Date().getFullYear() }}
-      </p>
-      <ThemeSwitcher />
+      </p> -->
+
+      <ThemeSwitcher class="mt-4" />
+
     </div>
   </header>
 </template>
@@ -74,7 +78,8 @@ import ThemeSwitcher from "./ThemeSwitcher.vue"; // Ścieżka może wymagać kor
 const categories = ref([
   { name: "Biznes", slug: "biznes" },
   { name: "Afery", slug: "afery" },
-  { name: "Sport", slug: "sport" },
+  { name: "Sporty", slug: "sporty" },
+  { name: "Spoko Praca", slug: "praca" },
 ]);
 
 const isMobileMenuOpen = ref(false);

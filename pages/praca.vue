@@ -1,7 +1,8 @@
+// pages/index.vue
 <template>
   <div>
     <Head>
-      <Title>Mój Blog</Title>
+      <Title>Praca</Title>
       <Meta name="description" content="Przeglądaj najnowsze artykuły na moim blogu." />
     </Head>
 
@@ -9,7 +10,7 @@
       :articles-data="articles || []"
       :pending="isLoading"
       :error="fetchError"
-      :ads-every-nth="2"
+      :ads-every-nth="3"
     />
 
   </div>
@@ -19,12 +20,12 @@
 // Destrukturujemy `data`, `pending` i `error` z wyniku useAsyncData
 // Zmieniłem nazwy dla lepszej czytelności, ale możesz użyć oryginalnych `data`, `pending`, `error`
 const { data: articles, pending: isLoading, error: fetchError } = await useAsyncData(
-  'home-page-articles', // Dobrą praktyką jest nadawanie unikalnego klucza dla useAsyncData
+  'praca', // Dobrą praktyką jest nadawanie unikalnego klucza dla useAsyncData
   () => {
     // Zakładam, że queryCollection to Twoja niestandardowa funkcja do pobierania danych.
     // Upewnij się, że zwraca ona Promise.
     // Parametr 'nuxtApp' (dawniej 'e') jest dostępny, jeśli go potrzebujesz, ale często nie jest konieczny.
-    return queryCollection('blog')
+    return queryCollection('praca')
       // .where('published', '=', true) // Twoje przykładowe warunki
       // .orWhere(query => query.where('featured', '=', true).where('priority', '>', 5))
       .all();
