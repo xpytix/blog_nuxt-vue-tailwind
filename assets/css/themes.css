@@ -85,4 +85,28 @@
     font-family: var(--font-heading);
     /* Kolor nagłówków będzie dziedziczony z text-primary lub można go ustawić klasą Tailwind */
   }
+
+  
+.prose h1, .prose h2, .prose h3 {
+  font-family: var(--font-heading);
+  color: rgb(var(--color-text-primary));
+}
+.prose p, .prose ul, .prose ol, .prose li {
+  font-family: var(--font-sans);
+  color: rgb(var(--color-text-primary));
+  margin-bottom: 1em;
+}
+.prose ul, .prose ol {
+  padding-left: 1.5em;
+}
+.prose li {
+  margin-bottom: 0.5em;
+}
+.prose a {
+  color: rgb(var(--color-accent));
+  text-decoration: underline;
+}
+.prose a:hover {
+  opacity: 0.8;
+}
 }

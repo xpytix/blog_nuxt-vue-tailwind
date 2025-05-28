@@ -4,6 +4,7 @@ description: 'Sztuczna inteligencja (AI) to już nie science fiction. Zobacz, ja
 date: 2025-05-14
 category: 'Technologia'
 author: 'Ewa Nowicka'
+isPartnerContent: "Partner"
 tags: ['AI', 'sztuczna inteligencja', 'technologia', 'innowacje', 'przyszłość', 'machine learning']
 image: 'https://images.unsplash.com/photo-1459156212016-c812468e2115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80'
 image_alt: 'Abstrakcyjna wizualizacja technologii sztucznej inteligencji z połączonymi punktami i liniami'

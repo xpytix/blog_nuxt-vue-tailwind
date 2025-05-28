@@ -1,10 +1,10 @@
 <template>
-  <div class="theme-switcher">
+  <div class="theme-switcher ">
     <button
       @click="toggleTheme"
       type="button"
       title="Zmień motyw"
-      class="p-2 rounded-xl border border-border-theme bg-bg-main hover:bg-bg-secondary text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary transition-colors duration-200"
+      class="p-6 rounded-xl border border-border-theme bg-bg-main hover:bg-bg-secondary text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary transition-colors duration-200"
       aria-label="Przełącz motyw"
     >
       <span v-if="colorMode.value === 'dark'">

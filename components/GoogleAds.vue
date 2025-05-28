@@ -1,10 +1,10 @@
 <template>
-    <div class="bg-background-secondary w-full my-4">
+    <div class="bg-background-secondary w-full">
       <div class="pl-2 text-xs text-left text-text-secondary mb-1 tracking-wider uppercase">
         <h3>Reklama</h3>
       </div>
       <div 
-        class="w-full min-h-[320px] sm:min-h-[90px] bg-background-primary flex items-center justify-center text-text-secondary  rounded-sm"
+        class="w-full min-h-[320px] sm:min-h-[320px] bg-background-primary flex items-center justify-center text-text-secondary  rounded-sm"
         aria-label="Miejsce na reklamę Google"
       >
         <span class="text-sm p-2">

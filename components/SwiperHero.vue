@@ -15,7 +15,7 @@
       <swiper-slide v-for="(slide, index) in combinedSlides" :key="index">
         <div
           class="h-full w-full bg-cover bg-center relative"
-          :style="{ backgroundImage: `url(${slide.image ? slide.image : '/images/biznes-placeholder.jpg'})` }"
+          :style="{ backgroundImage: `url(${slide.image ? slide.image : defaultImageSrc(slide.type)})` }"
         >
           <div
             :class="[
@@ -38,15 +38,15 @@
             >
               {{ truncateWords(slide.description, subtitleWordLimit) }}
             </p>
-            <a
-              :href="slide.path"
+            <NuxtLink
+              :to="slide.path"
               :class="[
                 'bg-transparent text-white border-2 border-white font-semibold py-2.5 px-6 sm:py-3 sm:px-8 rounded-lg text-sm sm:text-base transition-all duration-300 inline-block shadow-md hover:shadow-lg',
                 getButtonHoverClasses(slide.type) // Dynamiczne klasy dla przycisku
               ]"
             >
               Dowiedz się więcej
-            </a>
+            </NuxtLink>
           </div>
         </div>
       </swiper-slide>
@@ -61,7 +61,7 @@ import "swiper/css/pagination";
 // import "swiper/css/navigation"; // Jeśli nie używasz, można usunąć
 import "swiper/css/autoplay";
 import { Pagination, /* Navigation, */ Autoplay } from "swiper/modules"; // Navigation zakomentowane, jeśli nieużywane
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue"; // Dodano onMounted i onUnmounted
 import { useRoute } from 'vue-router'; // Import useRoute
 
 const titleWordLimit = ref(7);
@@ -96,6 +96,7 @@ const isAferyPath = computed(() => route.path.startsWith('/afery'));
 const isBiznesPath = computed(() => route.path.startsWith('/biznes'));
 const isSportyPath = computed(() => route.path.startsWith('/sporty')); // Załóżmy, że ścieżka to /sporty
 
+
 // --- Pobieranie danych ---
 // Pobieramy do 5 elementów dla każdej kategorii, aby mieć co wyświetlać na stronach kategorii
 const { data: aferyData } = await useAsyncData("aferyCollection", () => {
@@ -117,23 +118,17 @@ const combinedSlides = computed<Slide[]>(() => {
   if (isAferyPath.value) {
     // Jesteśmy na ścieżce /afery, pokazujemy tylko afery
     if (aferyData.value) {
-      aferyData.value.forEach(item => {
-        slides.push({ ...item, type: 'afera' });
-      });
+      aferyData.value.forEach(item => slides.push({ ...item, type: 'afera' }));
     }
   } else if (isBiznesPath.value) {
     // Jesteśmy na ścieżce /biznes, pokazujemy tylko biznes
     if (biznesData.value) {
-      biznesData.value.forEach(item => {
-        slides.push({ ...item, type: 'biznes' });
-      });
+      biznesData.value.forEach(item => slides.push({ ...item, type: 'biznes' }));
     }
   } else if (isSportyPath.value) {
     // Jesteśmy na ścieżce /sporty, pokazujemy tylko sporty
     if (sportyData.value) {
-      sportyData.value.forEach(item => {
-        slides.push({ ...item, type: 'sport' });
-      });
+      sportyData.value.forEach(item => slides.push({ ...item, type: 'sport' }));
     }
   } else {
     // Na innych ścieżkach (np. strona główna) - pokazujemy mieszankę
@@ -157,10 +152,8 @@ const getGradientClasses = (type: SlideType): string => {
       return 'from-red-600/80 via-red-600/40';
     case 'sport':
       return 'from-sky-600/80 via-sky-600/40';
-    case 'biznes': // Dodajemy case dla 'biznes', jeśli ma mieć inny kolor niż default
-                 // Jeśli 'biznes' ma używać 'accent', to ten case jest opcjonalny
-                 // i wystarczy default. Dla spójności, jeśli 'biznes' to 'accent':
-      return 'from-accent/80 via-accent/40'; // Zakładamy, że biznes używa domyślnego 'accent'
+    case 'biznes':
+      return 'from-accent/80 via-accent/40';
     default:
       return 'from-accent/80 via-accent/40';
   }
@@ -172,15 +165,71 @@ const getButtonHoverClasses = (type: SlideType): string => {
       return 'hover:bg-red-600 hover:border-red-600 hover:text-white';
     case 'sport':
       return 'hover:bg-sky-600 hover:border-sky-600 hover:text-white';
-    case 'biznes': // Analogicznie dla przycisku biznes
-      return 'hover:bg-accent hover:border-accent hover:text-text-on-accent'; // Zakładamy, że biznes używa domyślnego 'accent'
+    case 'biznes':
+      return 'hover:bg-accent hover:border-accent hover:text-text-on-accent';
     default:
       return 'hover:bg-accent hover:border-accent hover:text-text-on-accent';
   }
 };
 
+// --- Logika detekcji urządzenia mobilnego ---
+const isMobile = ref(false);
+let checkMobileHandler: (() => void) | null = null; // Przechowuje referencję do handlera dla usunięcia listenera
+
+onMounted(() => {
+  // Upewnij się, że kod wykonuje się tylko po stronie klienta
+  if (typeof window !== 'undefined') {
+    checkMobileHandler = () => {
+      isMobile.value = window.innerWidth < 768; // Możesz dostosować ten breakpoint (768px)
+    };
+    checkMobileHandler(); // Sprawdź stan początkowy
+    window.addEventListener('resize', checkMobileHandler); // Sprawdzaj przy zmianie rozmiaru okna
+  }
+});
+
+onUnmounted(() => {
+  // Usuń listener przy odmontowywaniu komponentu, aby uniknąć wycieków pamięci
+  if (typeof window !== 'undefined' && checkMobileHandler) {
+    window.removeEventListener('resize', checkMobileHandler);
+  }
+});
+
+// --- Logika wyboru domyślnego obrazka ---
+const defaultImageSrc = (type: SlideType): string => {
+  if (isMobile.value) {
+    // Ścieżki do obrazów dla urządzeń MOBILNYCH
+    // WAŻNE: Zaktualizuj poniższe ścieżki tak, aby wskazywały na Twoje rzeczywiste obrazy mobilne
+    switch (type) {
+      case 'afera':
+        return '/images/aferaMobile.png'; // Przykładowa ścieżka
+      case 'biznes':
+        return '/images/biznesMobile.png'; // Przykładowa ścieżka
+      case 'sport':
+      return '/images/sportMobile.png'; // Przykładowa ścieżka
+      default:
+      return '/images/aferaMobile.png'; // Przykładowa ścieżka
+    }
+  } else {
+    // Ścieżki do obrazów dla urządzeń DESKTOPOWYCH (Twoja oryginalna logika)
+    switch (type) {
+      case 'afera':
+        return '/images/AFERY.png'; // Twoja oryginalna ścieżka (jeśli to była desktopowa lub uniwersalna)
+      case 'biznes':
+        return '/images/BIZNES.png';     // Twoja oryginalna ścieżka
+      case 'sport':
+        return '/images/SPORT.png';      // Twoja oryginalna ścieżka
+      default:
+        return '/images/AFERY.png';      // Twoja oryginalna ścieżka domyślna
+    }
+  }
+};
+
+// console.log(defaultImageSrc); // Usunięto lub zakomentowano, ponieważ loguje samą funkcję
+
 const modules = [Pagination, Autoplay];
 </script>
+
+
 <style>
 /* Style CSS pozostają bez zmian */
 .hero-swiper-container .swiper-button-next,

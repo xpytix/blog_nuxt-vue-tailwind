@@ -114,13 +114,8 @@ useHead({
 });
 </script>
 
-<style>
-/* Możesz zaimportować style dla .prose, jeśli nie są globalne */
-/* @import '~/assets/css/prose-styles.css'; */
+<style scoped>
 
-/* Style dla `.prose` (jeśli nie używasz @tailwindcss/typography) powinny być zdefiniowane globalnie */
-/* lub zaimportowane. Poniższe style są przykładowe i powinny być w pliku globalnym CSS lub */
-/* w `<style>` komponentu layoutu, jeśli chcesz, aby były spójne. */
 .prose h1, .prose h2, .prose h3 {
   font-family: var(--font-heading);
   color: rgb(var(--color-text-primary));

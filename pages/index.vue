@@ -16,32 +16,20 @@
 </template>
 
 <script setup lang="ts">
-// Destrukturujemy `data`, `pending` i `error` z wyniku useAsyncData
-// Zmieniłem nazwy dla lepszej czytelności, ale możesz użyć oryginalnych `data`, `pending`, `error`
+
 const { data: articles, pending: isLoading, error: fetchError } = await useAsyncData(
-  'home-page-articles', // Dobrą praktyką jest nadawanie unikalnego klucza dla useAsyncData
+  'home-page-articles',
   () => {
-    // Zakładam, że queryCollection to Twoja niestandardowa funkcja do pobierania danych.
-    // Upewnij się, że zwraca ona Promise.
-    // Parametr 'nuxtApp' (dawniej 'e') jest dostępny, jeśli go potrzebujesz, ale często nie jest konieczny.
     return queryCollection('blog')
-      // .where('published', '=', true) // Twoje przykładowe warunki
-      // .orWhere(query => query.where('featured', '=', true).where('priority', '>', 5))
+    .order('date', 'DESC')
+    .limit(25)
       .all();
   }
 );
 
-// Jeśli używasz Nuxt Content, typowe zapytanie wyglądałoby mniej więcej tak:
-// import { queryContent } from '#imports'; // Lub jest auto-importowane
-// const { data: articles, pending: isLoading, error: fetchError } = await useAsyncData(
-//   'home-page-articles',
-//   () => queryContent('/blog') // Ścieżka do Twoich artykułów w katalogu /content
-//     // .where({ published: true }) // Przykład filtrowania
-//     .sort({ date: -1 }) // Przykładowe sortowanie
-//     .find()
-// );
+
+
 </script>
 
 <style scoped>
-/* Twoje style dla strony, jeśli jakieś są */
 </style>

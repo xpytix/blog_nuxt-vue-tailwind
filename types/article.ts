@@ -1,15 +1,29 @@
 // ~/types/article.ts
 export interface Article {
-  _id: string;         // Unikalne ID nadawane przez Nuxt Content
-  _path: string;       // Ścieżka do pliku contentu, np. /blog/nazwa-artykulu
-  title?: string;
+  _id: string;          // Automatycznie przez Nuxt Content
+  _path?: string;        // Automatycznie przez Nuxt Content (ścieżka bez rozszerzenia)
+
+  title: string;
   description?: string;
-  image?: string;       // Ścieżka do obrazka lub obiekt obrazka
-  image_alt?: string;
+
+  date: string;           // Data jako string (zgodnie ze schematem Zod)
+  dateModified?: string;   // Opcjonalna data modyfikacji jako string
+
   category?: string;
-  date?: string;        // Data publikacji, np. w formacie YYYY-MM-DD
-  author?: string;      // Nazwa autora lub obiekt autora
+  author?: string;
+  authorTwitterHandle?: string; // Opcjonalny uchwyt Twittera autora
+
+  image?: string;        // Ścieżka do obrazka
+  image_alt?: string;    // Tekst alternatywny dla obrazka
+
   tags?: string[];
-  body?: any;           // Przetworzona treść Markdown (opcjonalnie, jeśli potrzebujesz w ArticleCard)
-  // Dodaj inne pola, które występują w Twoim frontmatter i są potrzebne
+  isPartnerContent?: string | boolean; // Może być stringiem lub booleanem, dostosuj do danych
+                                   // Jeśli w YAML używasz true/false, Zod powinien mieć z.boolean()
+                                   // Jeśli string, to z.string() jest OK.
+
+  body?: any;            // Treść artykułu (np. z Markdown)
+
+  path?: string;           // Jeśli używasz tego pola do niestandardowego routingu/identyfikacji
+                           // i jest ono inne niż _path. Często można polegać tylko na _path.
+  // Usunięto zagnieżdżony obiekt 'meta', zakładając, że pola są na najwyższym poziomie
 }

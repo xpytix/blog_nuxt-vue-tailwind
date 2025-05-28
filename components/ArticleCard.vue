@@ -1,15 +1,11 @@
-// components/ArticleCard.vue
 <script setup lang="ts">
+import { computed } from "vue"; // Upewnij się, że computed jest zaimportowane
 import type { Article } from "~/types/article"; // Dostosuj ścieżkę
 
 const props = defineProps<{
-  article: Article; // Użyj zaimportowanego typu
+  article: Article;
 }>();
 
-console.log(props.article);
- 
-
-// Funkcja do formatowania daty, jeśli data jest obiektem Date
 const formatDate = (dateValue: string | Date | undefined): string => {
   if (!dateValue) return "";
   const date = new Date(dateValue);
@@ -19,57 +15,127 @@ const formatDate = (dateValue: string | Date | undefined): string => {
     day: "numeric",
   });
 };
+
+const category = computed(() => {
+  console.log(props.article.path);
+
+  if (props.article && props.article.path) {
+    return props.article.path.split("/").filter(Boolean)[0] || "";
+  }
+  return "";
+});
+
+const categoryBackgroundClass = computed(() => {
+  const categoryValue = category.value;
+  switch (categoryValue) {
+    case "afery":
+      return "bg-red-600";
+    case "biznes":
+      return "bg-accent"; // Zielony akcent
+    case "sporty":
+      return "bg-sky-600";
+    default:
+      return "bg-gray-500";
+  }
+});
+
+const categoryGradientClass = computed(() => {
+  const categoryValue = category.value;
+  // Użyjemy przezroczystości /60 dla gradientu, możesz to dostosować
+  switch (categoryValue) {
+    case "afery":
+      return "from-red-600/60";
+    case "biznes":
+      return "from-accent/60";
+    case "sporty":
+      return "from-sky-600/60";
+    default:
+      return "from-gray-500/60"; // Domyślny gradient
+  }
+});
+
+// Nowa właściwość obliczeniowa dla domyślnego obrazka zależnego od kategorii
+const defaultImageSrc = computed(() => {
+  const categoryValue = category.value;
+  switch (categoryValue) {
+    case "afery":
+      return "/images/AFERY.png"; // Dostosuj ścieżkę
+    case "biznes":
+      return "/images/BIZNES.png"; // Dostosuj ścieżkę
+    case "sporty":
+      return "/images/SPORT.png"; // Dostosuj ścieżkę
+    default:
+      return "/images/AFERY.png"; // Domyślna ścieżka, jeśli kategoria nie pasuje lub brak
+  }
+});
 </script>
 
 <template>
   <div
     class="bg-background-primary w-full shadow-lg rounded-lg overflow-hidden h-full flex flex-col"
   >
-  <NuxtLink :to="article._path">
-      <img
-        v-if="article.image"
-        :src="article.image"
-        class="w-full h-48 object-cover"
-        loading="lazy"
-      />
-      <img
-        v-else
-        src="/images/biznes-placeholder.jpg" class="w-full h-48 object-cover"
-        loading="lazy"
-      />
+    <NuxtLink :to="article.path" class="block">
+      <div class="relative">
+        <img
+          v-if="article.image"
+          :src="article.image"
+          class="w-full h-48 object-cover"
+          loading="lazy"
+          :alt="article.title || 'Obraz artykułu'"
+        />
+        <img
+          v-else
+          :src="defaultImageSrc"
+          class="w-full h-48 object-cover"
+          loading="lazy"
+          alt="Domyślny obraz artykułu"
+        />
+        <div
+          :class="[
+            'absolute inset-0 bg-gradient-to-t to-transparent',
+            categoryGradientClass, // Dynamiczna klasa gradientu
+          ]"
+        ></div>
+      </div>
     </NuxtLink>
     <div class="p-6 flex flex-col flex-grow">
-      <NuxtLink class="hover:text-primary transition-colors">
+      <NuxtLink class="hover:text-primary transition-colors" :to="article.path">
         <h3 class="text-xl font-bold mb-2 text-text-primary">
           {{ article.title || "Brak tytułu" }}
         </h3>
       </NuxtLink>
-      <!-- <p v-if="article.description" class="text-text-secondary text-sm mb-3 flex-grow">{{ article.description }}</p> -->
-      <div class="flex place-content-between">
-        <div v-if="article.category" class="mt-2">
+      <div class="flex place-content-between items-center mt-auto">
+        <div>
           <NuxtLink
-            :to="`/kategoria/${article.category.toLowerCase().replace(/\s+/g, '-')}`"
-            class="text-xs bg-accent text-text-on-accent px-2 py-1 rounded-full hover:bg-opacity-80 transition-colors"
+            :to="`/${category}`"
+            :class="[
+              'text-xs text-text-on-accent px-2 py-1 rounded-full hover:bg-opacity-80 transition-colors',
+              categoryBackgroundClass, // Dynamiczna klasa tła
+            ]"
           >
-            {{ article.category }}
+            {{ category.toUpperCase() }}
           </NuxtLink>
+          
         </div>
-        <div class="text-xs text-text-secondary mt-auto">
+
+        <div class="text-xs text-text-secondary">
+          <span
+            class="text-xs text-primary px-2 py-1 rounded-full font-semibold"
+            v-if="article.isPartnerContent"
+          > {{ article.isPartnerContent }} 
+          </span>
           <span v-if="article.date">{{ formatDate(article.date) }}</span>
-          <span v-if="article.author"> - {{ article.author }}</span>
+    
         </div>
       </div>
-
-      <!-- <div v-if="article.tags && article.tags.length" class="mt-2 flex flex-wrap gap-1">
-        <NuxtLink
-          v-for="tag in article.tags"
-          :key="tag"
-          :to="`/tag/${tag.toLowerCase().replace(/\s+/g, '-')}`"
-          class="text-xs bg-gray-200 dark:bg-gray-700 text-text-secondary px-2 py-1 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-        >
-          #{{ tag }}
-        </NuxtLink>
-      </div> -->
     </div>
   </div>
 </template>
+
+<style scoped>
+.prose a,
+h3 {
+  text-decoration: none;
+  color: rgb(var(--color-text-primary));
+}
+</style>

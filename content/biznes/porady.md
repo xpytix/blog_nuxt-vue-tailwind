@@ -5,7 +5,7 @@ date: 2025-05-16
 category: 'Przepisy'
 author: 'Anna Kowalska'
 tags: ['szarlotka', 'przepis', 'ciasto', 'deser', 'jabłka', 'kruszonka']
-
+isPartnerContent: "Sponsorowany"
 image_alt: 'Apetyczny kawałek domowej szarlotki z kruszonką na białym talerzu'
 ---
 

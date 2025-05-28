@@ -1,66 +1,74 @@
 <template>
-    <div 
-      class="w-full py-8 px-4 my-6 bg-background-secondary rounded-xl shadow-lg text-center"
-      role="complementary"
-      aria-labelledby="partner-label-fullwidth"
-    >
-      <span 
-        id="partner-label-fullwidth" 
-        class="block text-sm uppercase tracking-wider text-text-secondary mb-4"
-      >
-        {{ label }}
-      </span>
-      
-      <div class="flex justify-center">
-        <a 
-          v-if="partnerLink" 
-          :href="partnerLink" 
-          target="_blank" 
-          rel="noopener noreferrer" 
+  <div
+    class="container mx-auto px-4 pt-6"
+    role="complementary"
+    aria-labelledby="partner-label-teaser"
+  >
+    <div class="
+      flex items-center
+      bg-background-primary 
+      border border-accent rounded-lg shadow-lg 
+      p-4 sm:p-6 
+      relative bg-gradient-to-t from-accent/15 to-transparent 
+      dark:from-accent/55 dark:to-accent/5
+      ">
+      <div class="w-1/4 flex-shrink-0 flex justify-center items-center">
+        <a
+          v-if="partnerLink"
+          :href="partnerLink"
+          target="_blank"
+          rel="noopener noreferrer"
           class="inline-block transform hover:scale-105 transition-transform duration-300"
-          :aria-label="`Link do strony partnera: ${altText || 'Główny Partner'}`"
+          :aria-label="`Link do strony partnera: ${partnerName || altText || 'Partner'}`"
         >
-          <img 
-            :src="logoUrl" 
-            :alt="altText" 
-            class="h-16 max-w-xs object-contain mx-auto" 
-            _comment="Większe logo: h-16 (64px), max-w-xs (320px)"
+          <img
+            :src="logoUrl"
+            :alt="altText"
+            class="h-12 sm:h-14 md:h-16 object-contain w-auto max-w-full"
           />
         </a>
         <div v-else class="inline-block">
-          <img 
-            :src="logoUrl" 
-            :alt="altText" 
-            class="h-16 max-w-xs object-contain mx-auto"
+          <img
+            :src="logoUrl"
+            :alt="altText"
+            class="h-12 sm:h-14 md:h-16 object-contain w-auto max-w-full"
           />
         </div>
       </div>
-  
-      <p v-if="partnerName" class="mt-3 text-xs text-text-secondary">
-        {{ partnerName }}
-      </p>
-  
+
+      <div class="w-px bg-border-theme bg-primary  self-stretch mx-4 sm:mx-6" aria-hidden="true"></div>
+
+      <div class="text-left flex-1">
+        <span
+          id="partner-label-teaser"
+          class="block text-xs sm:text-sm uppercase tracking-wider text-accent" 
+        >
+          {{ label }}
+        </span>
+        <p v-if="partnerName" class="text-lg sm:text-xl md:text-2xl font-bold text-primary leading-tight mt-1">
+          {{ partnerName }}
+        </p>
+      </div>
     </div>
-  </template>
-  
-  <script setup lang="ts">
-  interface Props {
-    logoUrl: string;
-    partnerName?: string; // Dodano opcjonalną nazwę partnera
-    altText?: string;
-    partnerLink?: string;
-    label?: string;
-  }
-  
-  withDefaults(defineProps<Props>(), {
-    altText: 'Logo Głównego Partnera',
-    label: 'Główny Partner:',
-    partnerName: '', // Domyślnie puste
-  });
-  </script>
-  
-  <style scoped>
-  /* max-w-xs to Tailwind class (max-width: 20rem; /* 320px * /) */
-  /* h-16 to Tailwind class (height: 4rem; /* 64px * /) */
-  /* Nie są potrzebne dodatkowe style CSS, jeśli Tailwind jest poprawnie skonfigurowany. */
-  </style>
+  </div>
+</template>
+
+<script setup lang="ts">
+interface Props {
+  logoUrl: string;
+  partnerName?: string;
+  altText?: string;
+  partnerLink?: string;
+  label?: string;
+}
+
+withDefaults(defineProps<Props>(), {
+  altText: 'Logo Partnera',
+  label: 'Miejsce dla Głównego Partner Moodzik.pl',
+  // partnerName: 'Moodzik.pl', 
+});
+</script>
+
+<style scoped>
+/* Dodatkowe style nie powinny być potrzebne */
+</style>

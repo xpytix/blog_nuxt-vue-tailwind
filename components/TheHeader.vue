@@ -7,7 +7,6 @@
       </NuxtLink>
 
       <nav class="hidden md:block">
-        
         <ul class="flex space-x-4 lg:space-x-6 items-center">          
           <li v-for="category in categories" :key="category.slug">
             <NuxtLink :to="`/${category.slug}`"
@@ -29,6 +28,13 @@
         </button>
       </div>
     </div>
+    <NewsTicker
+      v-if="showNewsTicker" 
+      :items="tickerPartnerItems"
+      speed="15s"
+      separator=" ♦ "
+    /> 
+
 
     <div v-if="isMobileMenuOpen"
       class="md:hidden fixed inset-0 z-50 bg-background-primary/95 backdrop-blur-sm flex flex-col items-center justify-center p-6"
@@ -45,12 +51,12 @@
       <nav class="flex flex-col items-center space-y-6">
         <NuxtLink to="/" @click="closeMobileMenu"
           class="text-2xl font-heading text-text-primary hover:text-primary transition-colors"
-          _comment="Dodałem font-heading również tutaj" active-class="text-primary font-semibold">
+          _comment="Dodałem font-heading również tutaj" active-class="text-accent font-semibold">
           Strona Główna
         </NuxtLink>
         <NuxtLink v-for="category in categories" :key="category.slug" :to="`/${category.slug}`" @click="closeMobileMenu"
           class="text-2xl font-heading text-text-primary hover:text-primary transition-colors"
-          _comment="Dodałem font-heading również tutaj" active-class="text-primary font-semibold">
+          _comment="Dodałem font-heading również tutaj" active-class="text-accent font-semibold">
           {{ category.name }}
         </NuxtLink>
       </nav>
@@ -76,10 +82,16 @@ import { useRoute } from "vue-router";
 import ThemeSwitcher from "./ThemeSwitcher.vue"; // Ścieżka może wymagać korekty
 
 const categories = ref([
-  { name: "Biznes", slug: "biznes" },
   { name: "Afery", slug: "afery" },
+  { name: "Biznesy", slug: "biznes" },
   { name: "Sporty", slug: "sporty" },
-  { name: "Spoko Praca", slug: "praca" },
+]);
+
+const tickerPartnerItems = ref([
+  "Partner Główny: Zostan partnerem",
+  "Partner złoty 1: Zostan partnerem", // Zachowuję dwukropek zgodnie z Twoją prośbą
+  "Partner złoty 2: Zostan partnerem",
+  "Partner złoty 3: Zostan partnerem",
 ]);
 
 const isMobileMenuOpen = ref(false);
@@ -92,6 +104,28 @@ const toggleMobileMenu = () => {
 const closeMobileMenu = () => {
   isMobileMenuOpen.value = false;
 };
+
+
+const showNewsTicker = ref(false);
+let newsTickerTimer: ReturnType<typeof setTimeout> | null = null;
+
+onMounted(() => {
+  // Ten kod wykona się tylko raz, gdy Header.vue zostanie zamontowany
+  console.log('Header.vue zamontowany, uruchamiam timer dla NewsTicker...');
+  newsTickerTimer = setTimeout(() => {
+    showNewsTicker.value = true; 
+    console.log('NewsTicker powinien być teraz widoczny.');
+  }, 6000); // 6 sekund
+});
+
+onUnmounted(() => {
+  // To się wykona, jeśli Header.vue zostanie kiedykolwiek odmontowany
+  // (np. przy zmianie layoutu na zupełnie inny, który nie zawiera tego Headera)
+  if (newsTickerTimer) {
+    clearTimeout(newsTickerTimer);
+    console.log('Timer dla NewsTicker wyczyszczony przy odmontowaniu Header.vue.');
+  }
+});
 
 watch(isMobileMenuOpen, (isOpen) => {
   if (process.client) {

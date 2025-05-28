@@ -11,9 +11,11 @@ export default defineContentConfig({
         description: z.string().optional(), // Dodaj description jeśli jeszcze nie ma
         tags: z.array(z.string()).optional(), // Oznacz jako opcjonalne jeśli nie wszystkie posty mają tagi
         image: z.string().optional(), // Oznacz jako opcjonalne
-        date: z.date(),
+        date: z.string(),
         category: z.string().optional(), // Dodaj pole category, oznacz jako opcjonalne
-        author: z.string().optional() // Dodaj autora, jeśli używasz
+        author: z.string().optional(), // Dodaj autora, jeśli używasz
+        path : z.string().optional(),
+        isPartnerContent: z.string().optional()
       })
     }),
     biznes: defineCollection({
@@ -24,9 +26,12 @@ export default defineContentConfig({
         description: z.string().optional(), // Dodaj description jeśli jeszcze nie ma
         tags: z.array(z.string()).optional(), // Oznacz jako opcjonalne jeśli nie wszystkie posty mają tagi
         image: z.string().optional(), // Oznacz jako opcjonalne
-        date: z.date(),
+        date: z.string(),
+        isPartnerContent: z.string().optional(),
+
         category: z.string().optional(), // Dodaj pole category, oznacz jako opcjonalne
-        author: z.string().optional() // Dodaj autora, jeśli używasz
+        author: z.string().optional(), // Dodaj autora, jeśli używasz
+        path : z.string().optional()
       })
     }),
     sporty: defineCollection({
@@ -34,10 +39,13 @@ export default defineContentConfig({
       type: 'page',
       schema: z.object({
         title: z.string(), // Dodaj title jeśli jeszcze nie ma
+        path : z.string().optional(),
         description: z.string().optional(), // Dodaj description jeśli jeszcze nie ma
         tags: z.array(z.string()).optional(), // Oznacz jako opcjonalne jeśli nie wszystkie posty mają tagi
         image: z.string().optional(), // Oznacz jako opcjonalne
-        date: z.date(),
+        date: z.string(),
+        isPartnerContent: z.string().optional(),
+
         category: z.string().optional(), // Dodaj pole category, oznacz jako opcjonalne
         author: z.string().optional() // Dodaj autora, jeśli używasz
       })
@@ -47,12 +55,16 @@ export default defineContentConfig({
       type: 'page',
       schema: z.object({
         title: z.string(), // Dodaj title jeśli jeszcze nie ma
+        path : z.string().optional(),
         description: z.string().optional(), // Dodaj description jeśli jeszcze nie ma
         tags: z.array(z.string()).optional(), // Oznacz jako opcjonalne jeśli nie wszystkie posty mają tagi
         image: z.string().optional(), // Oznacz jako opcjonalne
-        date: z.date(),
+        date: z.string(),
+        isPartnerContent: z.string().optional(),
+
         category: z.string().optional(), // Dodaj pole category, oznacz jako opcjonalne
         author: z.string().optional() // Dodaj autora, jeśli używasz
+        
       })
     }),
     afery: defineCollection({
@@ -60,12 +72,15 @@ export default defineContentConfig({
       type: 'page',
       schema: z.object({
         title: z.string(), // Dodaj title jeśli jeszcze nie ma
+        path : z.string().optional(),
         description: z.string().optional(), // Dodaj description jeśli jeszcze nie ma
         tags: z.array(z.string()).optional(), // Oznacz jako opcjonalne jeśli nie wszystkie posty mają tagi
         image: z.string().optional(), // Oznacz jako opcjonalne
-        date: z.date(),
+        date: z.string(),
         category: z.string().optional(), // Dodaj pole category, oznacz jako opcjonalne
-        author: z.string().optional() // Dodaj autora, jeśli używasz
+        author: z.string().optional(), // Dodaj autora, jeśli używasz
+        isPartnerContent: z.string().optional()
+
       })
     })
   }
