@@ -35,7 +35,7 @@
       return 'Brak wiadomości do wyświetlenia... '; // Fallback + spacja na końcu dla płynności
     }
     // Dodajemy separator na końcu każdego elementu, w tym ostatniego, dla płynnego przejścia
-    return props.items.map(item => `${item}${props.separator}`).join('');
+    return [...props.items, ...props.items].map(item => `${item}${props.separator}`).join(' ');
   });
   
   </script>

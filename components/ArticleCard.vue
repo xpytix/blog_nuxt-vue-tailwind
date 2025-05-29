@@ -17,8 +17,6 @@ const formatDate = (dateValue: string | Date | undefined): string => {
 };
 
 const category = computed(() => {
-  console.log(props.article.path);
-
   if (props.article && props.article.path) {
     return props.article.path.split("/").filter(Boolean)[0] || "";
   }
@@ -76,14 +74,14 @@ const defaultImageSrc = computed(() => {
   >
     <NuxtLink :to="article.path" class="block">
       <div class="relative">
-        <img
+        <NuxtImg
           v-if="article.image"
           :src="article.image"
           class="w-full h-48 object-cover"
           loading="lazy"
           :alt="article.title || 'Obraz artykułu'"
         />
-        <img
+        <NuxtImg
           v-else
           :src="defaultImageSrc"
           class="w-full h-48 object-cover"
@@ -134,7 +132,7 @@ const defaultImageSrc = computed(() => {
 
 <style scoped>
 .prose a,
-h3 {
+h3 {  
   text-decoration: none;
   color: rgb(var(--color-text-primary));
 }

@@ -7,7 +7,7 @@
             &copy; {{ new Date().getFullYear() }} Moodzik.pl. Wszelkie prawa zastrzeżone.
           </div>
   
-          <div class="flex space-x-4">
+          <!-- <div class="flex space-x-4">
             <a href="#" class="hover:text-primary transition-colors" aria-label="Facebook">
               <Icon name="mdi:facebook" size="20" />
             </a>
@@ -17,7 +17,7 @@
             <a href="#" class="hover:text-primary transition-colors" aria-label="Twitter">
               <Icon name="mdi:twitter" size="20" />
             </a>
-          </div>
+          </div> -->
   
         </div>
   

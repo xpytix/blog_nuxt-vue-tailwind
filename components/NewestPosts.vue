@@ -1,11 +1,10 @@
 <template>
   <div
     v-if="articles.length > 0"
-    class="max-w-5xl mx-auto sm:px-6 lg:px-8"
+  class="container mx-auto mb-8 "
   >
     <h2
-      class="text-2xl sm:text-3xl font-heading text-text-primary mb-4 sm:text-left"
-    >
+    class="text-2xl font-bold uppercase sm:text-3xl font-heading text-text-primary mb-6 sm:text-left" >
       MOODZIK NA DZIŚ:
     </h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">

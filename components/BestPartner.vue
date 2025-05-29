@@ -21,14 +21,14 @@
           class="inline-block transform hover:scale-105 transition-transform duration-300"
           :aria-label="`Link do strony partnera: ${partnerName || altText || 'Partner'}`"
         >
-          <img
+          <NuxtImg
             :src="logoUrl"
             :alt="altText"
             class="h-12 sm:h-14 md:h-16 object-contain w-auto max-w-full"
           />
         </a>
         <div v-else class="inline-block">
-          <img
+          <NuxtImg
             :src="logoUrl"
             :alt="altText"
             class="h-12 sm:h-14 md:h-16 object-contain w-auto max-w-full"

@@ -1,6 +1,5 @@
-// pages/sporty/[slug].vue (lub Twoja strona artykułu)
 <template>
-  <div>
+  <div >
     <div v-if="pending && !page" class="text-center py-20 text-text-secondary">
       Ładowanie artykułu...
     </div>
@@ -27,8 +26,8 @@
     </div>
 
     <template v-else-if="page">
-      <article
-        class="prose dark:prose-invert lg:prose-xl mx-auto bg-background-secondary p-6 sm:p-8 md:p-10 rounded-lg shadow-lg"
+      <article 
+        class="container mx-auto prose dark:prose-invert lg:prose-xl mx-auto bg-background-secondary p-6 mt-6 sm:p-8 md:p-2"
       >
         <header class="mb-8">
           <h1

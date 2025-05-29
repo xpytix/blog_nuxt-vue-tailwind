@@ -1,4 +1,6 @@
 <template>
+
+  
   <div class="container mx-auto">
     <div v-if="pending" class="flex justify-center items-center min-h-[300px]">
       <div class="spinner" aria-label="Ładowanie"></div>
@@ -10,6 +12,8 @@
       </p>
     </div>
   </div>
+
+
   <div class="container mx-auto">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
       <template v-for="item in newItems" :key="item.id">
@@ -19,6 +23,7 @@
         <div v-else-if="item.type === 'ad'" class="flex items-stretch">
           <GoogleAds class="w-full h-full" />
         </div>
+        
       </template>
     </div>
   </div>

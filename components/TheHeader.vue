@@ -14,7 +14,9 @@
               active-class="text-primary bg-primary/10">
               {{ category.name }}
             </NuxtLink>
+            
           </li>
+          <ThemeSwitcher class="" />
         </ul>
       </nav>
 
@@ -111,10 +113,8 @@ let newsTickerTimer: ReturnType<typeof setTimeout> | null = null;
 
 onMounted(() => {
   // Ten kod wykona się tylko raz, gdy Header.vue zostanie zamontowany
-  console.log('Header.vue zamontowany, uruchamiam timer dla NewsTicker...');
   newsTickerTimer = setTimeout(() => {
     showNewsTicker.value = true; 
-    console.log('NewsTicker powinien być teraz widoczny.');
   }, 6000); // 6 sekund
 });
 
@@ -123,7 +123,6 @@ onUnmounted(() => {
   // (np. przy zmianie layoutu na zupełnie inny, który nie zawiera tego Headera)
   if (newsTickerTimer) {
     clearTimeout(newsTickerTimer);
-    console.log('Timer dla NewsTicker wyczyszczony przy odmontowaniu Header.vue.');
   }
 });
 

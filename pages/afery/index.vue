@@ -1,7 +1,7 @@
 <template>
   <div>
     <Head>
-      <Title>Mój Blog</Title>
+      <Title>Afery</Title>
       <Meta name="description" content="Przeglądaj najnowsze artykuły na moim blogu." />
     </Head>
 
