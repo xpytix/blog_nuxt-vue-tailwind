@@ -17,7 +17,6 @@
 import { useRoute } from "#app"; // useRoute jest auto-importowany, ale można dla jasności
 import { useAsyncData, useHead } from "#imports"; // useHead i useAsyncData są auto-importowane
 import type { Article } from "~/types/article"; // Załóżmy, że typ Article jest zdefiniowany
-// import ArticleList from '~/components/ArticleList.vue'; // Upewnij się, że ArticleList jest zaimportowany, jeśli nie jest globalny
 
 // --- POBIERANIE DANYCH ARTYKUŁÓW ---
 
@@ -29,34 +28,29 @@ const {
 () => {
   return queryCollection("blog") 
     .order("date", "DESC")
-    .limit(25) // Pobierasz 25 najnowszych artykułów
+    .limit(15) // Pobierasz 15 najnowszych artykułów
     .all();
-  // Pamiętaj: jeśli .all() pobiera pełną treść, 25 artykułów to może być sporo danych.
-  // Rozważ pobieranie tylko potrzebnych pól dla ArticleList, jeśli Twoje queryCollection to wspiera.
 });
 
-// --- KONFIGURACJA SEO DLA STRONY GŁÓWNEJ ---
 
-// Wartości konfiguracyjne - najlepiej przenieść do runtimeConfig Nuxta lub pliku konfiguracyjnego
-const siteUrl = "https://moodzik.pl"; // ZASTĄP swoim prawdziwym URL-em
-const blogName = "Moodzik.pl"; // ZASTĄP prawdziwą nazwą bloga
+const siteUrl = "https://moodzik.pl"; 
+const blogName = "Moodzik.pl"; 
 const defaultBlogDescription =
   "Odkryj najnowsze artykuły, wnikliwe analizy i poradniki ze świata afer, biznesu, sportu i lifestyle na Moodzik.pl. Twoje źródło codziennej dawki wiedzy i inspiracji.";
-const defaultOgpImageUrl = `${siteUrl}/images/social/moodzik-og-default.png`; // Przykładowa ścieżka, upewnij się, że obrazek istnieje w /public
-const blogLogoUrl = `${siteUrl}/images/logos/moodzik-logo.png`; // Przykładowa ścieżka do logo
-// const twitterHandle = '@TwojTwitterHandle'; // Opcjonalnie, jeśli masz
+const defaultOgpImageUrl = `${siteUrl}/images/moodzik-logo.png`; // Przykładowa ścieżka, upewnij się, że obrazek istnieje w /public
+const blogLogoUrl = `${siteUrl}/images/LOGO.png`; // Przykładowa ścieżka do logo
+
 
 const route = useRoute();
-const pageUrl = `${siteUrl}${route.path}`; // Kanoniczny URL bieżącej strony
+const pageUrl = `${siteUrl}${route.path}`; 
 
 useHead({
   title: `${blogName} - Afery, Biznes, Sport, Lifestyle | Strona Główna`, // Bardziej opisowy tytuł
   htmlAttrs: {
-    lang: "pl", // Ustawienie języka dla całej strony HTML
+    lang: "pl", 
   },
   meta: [
     { name: "description", content: defaultBlogDescription },
-    // Open Graph (dla Facebook, LinkedIn, Pinterest itp.)
     {
       property: "og:title",
       content: `${blogName} - Twoje Centrum Wiedzy i Inspiracji`,
@@ -80,47 +74,28 @@ useHead({
     { name: "twitter:description", content: defaultBlogDescription },
     { name: "twitter:image", content: defaultOgpImageUrl },
     { name: "twitter:image:alt", content: `Logo ${blogName}` },
-    // { name: 'twitter:site', content: twitterHandle }, // Jeśli masz konto Twitter dla strony
 
-    // Dodatkowe meta tagi
-    // { name: 'robots', content: 'index, follow' } // Zazwyczaj domyślne dla strony głównej, ale można dodać jawnie
   ],
   link: [
-    { rel: "canonical", href: pageUrl },
-    // Przykłady innych przydatnych linków:
-    // { rel: 'alternate', hreflang: 'en', href: `${siteUrl}/en${route.path}` }, // Jeśli masz wersje językowe
-    // { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
-    // { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
-    // { rel: 'manifest', href: '/site.webmanifest' }
+    { rel: "canonical", href: pageUrl }
   ],
   script: [
-    // Dane strukturalne JSON-LD
     {
       type: "application/ld+json",
       children: JSON.stringify({
         "@context": "https://schema.org",
-        "@type": "WebSite", // Dla strony głównej. Jeśli to główna strona bloga, można też użyć 'Blog'
+        "@type": "WebSite",
         url: siteUrl,
         name: blogName,
         description: defaultBlogDescription,
-        // Opcjonalnie: Wyszukiwarka wewnątrzwitrynowa w wynikach Google
-        // potentialAction: {
-        //   '@type': 'SearchAction',
-        //   target: {
-        //     '@type': 'EntryPoint',
-        //     urlTemplate: `${siteUrl}/szukaj?q={search_term_string}`
-        //   },
-        //   'query-input': 'required name=search_term_string'
-        // },
         publisher: {
-          // Informacje o wydawcy są zawsze dobrym pomysłem
-          "@type": "Organization", // Lub 'Person', jeśli to blog osobisty
+          "@type": "Organization", 
           name: blogName,
           logo: {
             "@type": "ImageObject",
-            url: blogLogoUrl, // Upewnij się, że ten plik istnieje
-            width: 200, // Przykładowe wymiary, dostosuj
-            height: 50, // Przykładowe wymiary, dostosuj
+            url: blogLogoUrl, 
+            width: 200, 
+            height: 50, 
           },
         },
       }),
@@ -130,5 +105,4 @@ useHead({
 </script>
 
 <style scoped>
-/* Twoje style dla strony, jeśli jakieś są */
 </style>

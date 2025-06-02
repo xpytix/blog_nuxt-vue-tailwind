@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full hero-swiper-container">
+  <div class="relative w-full hero-swiper-container bg-background-primary">
     <swiper
       :loop="true"
       :pagination="{

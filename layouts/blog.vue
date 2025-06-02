@@ -1,18 +1,15 @@
 <template>
   <div
     class="bg-background-secondary text-text-primary min-h-screen transition-colors duration-300 ease-in-out"
-  >    <TheHeader /> 
-    
-      <slot></slot>
- 
+  >
+    <TheHeader />
 
-    <TheFooter /> </div>
+    <slot></slot>
+
+    <TheFooter />
+  </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-</script>
-
-<style>
-
-</style>
+<style></style>

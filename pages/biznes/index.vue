@@ -15,34 +15,110 @@
 
   </div>
 </template>
-
 <script setup lang="ts">
-// Destrukturujemy `data`, `pending` i `error` z wyniku useAsyncData
-// Zmieniłem nazwy dla lepszej czytelności, ale możesz użyć oryginalnych `data`, `pending`, `error`
-const { data: articles, pending: isLoading, error: fetchError } = await useAsyncData(
-  'biznes', // Dobrą praktyką jest nadawanie unikalnego klucza dla useAsyncData
+import { useRoute } from '#app'; // useRoute jest auto-importowany
+import { useAsyncData, useHead } from '#imports'; // useHead i useAsyncData są auto-importowane
+import type { Article } from '~/types/article'; // Załóżmy, że typ Article jest zdefiniowany
+
+// --- POBIERANIE DANYCH ARTYKUŁÓW BIZNESOWYCH ---
+const {
+  data: articles,
+  pending: isLoading,
+  error: fetchError,
+} = await useAsyncData<Article[]>(
+  'biznes-category-articles', // Unikalny klucz dla tej strony/kategorii
   () => {
-    // Zakładam, że queryCollection to Twoja niestandardowa funkcja do pobierania danych.
-    // Upewnij się, że zwraca ona Promise.
-    // Parametr 'nuxtApp' (dawniej 'e') jest dostępny, jeśli go potrzebujesz, ale często nie jest konieczny.
-    return queryCollection('biznes')
-      // .where('published', '=', true) // Twoje przykładowe warunki
-      // .orWhere(query => query.where('featured', '=', true).where('priority', '>', 5))
+    return queryCollection('biznes') // Zakładam, że 'biznes' to Twoja kolekcja dla artykułów biznesowych
+      .order('date', 'DESC') // Możesz dodać sortowanie, jeśli potrzebne
+      .limit(15)           // Możesz dodać limit, jeśli potrzebne
       .all();
   }
 );
 
-// Jeśli używasz Nuxt Content, typowe zapytanie wyglądałoby mniej więcej tak:
-// import { queryContent } from '#imports'; // Lub jest auto-importowane
-// const { data: articles, pending: isLoading, error: fetchError } = await useAsyncData(
-//   'home-page-articles',
-//   () => queryContent('/blog') // Ścieżka do Twoich artykułów w katalogu /content
-//     // .where({ published: true }) // Przykład filtrowania
-//     .sort({ date: -1 }) // Przykładowe sortowanie
-//     .find()
-// );
-</script>
+// --- KONFIGURACJA SEO DLA STRONY KATEGORII BIZNES ---
 
-<style scoped>
-/* Twoje style dla strony, jeśli jakieś są */
-</style>
+const siteDomain = "https://moodzik.pl"; // Główna domena Twojej strony
+const blogName = "Moodzik.pl";
+const route = useRoute(); // Pobranie aktualnej ścieżki
+
+// Dynamiczne tworzenie pełnego URL bieżącej strony kategorii
+// route.path będzie np. "/biznes"
+const pageUrl = `${siteDomain}${route.path}`;
+
+// Specyficzne dla strony Biznes
+const biznesPageTitle = `Najnowsze wiadomości biznesowe, analizy rynkowe i finanse | ${blogName} Biznes`;
+const biznesPageDescription = `Odkryj świat biznesu z ${blogName}. Aktualne informacje gospodarcze, analizy trendów rynkowych, porady finansowe i inspirujące historie sukcesu. Twoje źródło wiedzy biznesowej.`;
+
+// Obrazki - zakładam, że są w głównym folderze /public/images
+// Rozważ stworzenie dedykowanego obrazka OG dla kategorii biznesowej
+const defaultOgpImageUrl = `${siteDomain}/images/LOGO.png`; // np. moodzik-og-biznes.png
+const blogLogoUrl = `${siteDomain}/images/LOGO.png`; // Logo strony
+
+useHead({
+  title: biznesPageTitle,
+  htmlAttrs: {
+    lang: "pl",
+  },
+  meta: [
+    { name: "description", content: biznesPageDescription },
+    // Open Graph (OG) Tags
+    { property: "og:title", content: biznesPageTitle },
+    { property: "og:description", content: biznesPageDescription },
+    { property: "og:image", content: defaultOgpImageUrl },
+    { property: "og:image:alt", content: `Wiadomości i analizy biznesowe na ${blogName}` },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+    { property: "og:url", content: pageUrl }, // Kanoniczny URL tej strony kategorii
+    { property: "og:type", content: "object" }, // 'object' lub 'website' dla strony kategorii
+    { property: "og:locale", content: "pl_PL" },
+    { property: "og:site_name", content: blogName },
+
+    // Twitter Card
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: biznesPageTitle },
+    { name: "twitter:description", content: biznesPageDescription },
+    { name: "twitter:image", content: defaultOgpImageUrl },
+    { name: "twitter:image:alt", content: `Wiadomości i analizy biznesowe na ${blogName}` },
+  ],
+  link: [
+    { rel: "canonical", href: pageUrl }
+  ],
+  script: [
+    {
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "CollectionPage", // Odpowiedni typ dla strony kategorii/listy
+        "name": biznesPageTitle,
+        "description": biznesPageDescription,
+        "url": pageUrl,
+        "isPartOf": { // Wskazuje, że ta strona jest częścią większej witryny
+          "@type": "WebSite",
+          "url": siteDomain,
+          "name": blogName
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": blogName,
+          "logo": {
+            "@type": "ImageObject",
+            "url": blogLogoUrl,
+            "width": 200, // Upewnij się, że te wymiary odpowiadają rzeczywistemu obrazkowi logo
+            "height": 50,
+          },
+        },
+        // Opcjonalnie: można dodać elementy listy, jeśli chcesz je jawnie oznaczyć
+        // "mainEntity": {
+        //   "@type": "ItemList",
+        //   "itemListElement": articles.value?.map((article, index) => ({
+        //     "@type": "ListItem",
+        //     "position": index + 1,
+        //     "url": `${siteDomain}${article.path}`, // Zakładając, że artykuł ma pole 'path'
+        //     "name": article.title // Zakładając, że artykuł ma pole 'title'
+        //   })) || []
+        // }
+      }),
+    },
+  ],
+});
+</script>
