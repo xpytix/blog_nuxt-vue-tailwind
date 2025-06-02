@@ -3,7 +3,7 @@
 
 # === Kluczowe Informacje o Treści ===
 
-title: "Chwytliwy Tytuł Artykułu (do 60-70 znaków)"
+title: "Treść Sponsorowana"
 # Główny tytuł (H1, <title>). Unikalny, z kluczowymi słowami.
 
 description: "Krótki Opis Artykułu (150-160 znaków) dla SEO i social media."
@@ -17,13 +17,13 @@ date: 2025-05-28 # Format YYYY-MM-DD.
 category: "Nazwa Kategorii" # np. Sport, Afery, Biznes
 # Główna kategoria artykułu.
 
-author: "Imię Nazwisko Autora" # lub "Nazwa Redakcji"
+author: "" # lub "Nazwa Redakcji"
 # Autor(ka) wpisu.
 
 image: "/images/mainPartner.png" # np. /images/artykuly/moj-artykul.webp
 # Ścieżka do głównego obrazka artykułu (z katalogu /public).
 
-image_alt: "Opis zawartości głównego obrazka"
+image_alt: "Partner"
 # Tekst alternatywny obrazka (dla SEO i dostępności).
 
 tags:

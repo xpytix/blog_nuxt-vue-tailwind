@@ -38,4 +38,19 @@ export default defineNuxtConfig({
     preconnect: true,
     preload: true,
   },
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: 'pl', // Zachowujemy istniejące atrybuty HTML
+      },
+      title: 'Blog', // Zachowujemy istniejący tytuł
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'description', content: 'test' }, // Zachowujemy istniejący opis
+        { name: 'robots', content: 'noindex, nofollow' } // DODANY TAG
+      ],
+      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }], // Zachowujemy istniejący link do favicony
+    },
+  },
 });
