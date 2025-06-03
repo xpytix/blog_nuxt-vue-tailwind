@@ -4,7 +4,7 @@
   >
     <TheHeader />
 
-    <slot></slot>
+    <NuxtPage :key="$route.fullPath" />
 
     <TheFooter />
   </div>
