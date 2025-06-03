@@ -1,9 +1,26 @@
+// pages/index.vue
+<template>
+  <div>
+    <Head>
+      <Title>Sporty</Title>
+      <Meta name="description" content="Przeglądaj najnowsze artykuły na moim blogu." />
+    </Head>
+
+    <ArticleList
+      :articles-data="articles || []"
+      :pending="isLoading"
+      :error="fetchError"
+      :ads-every-nth="3"
+    />
+
+  </div>
+</template>
 <script setup lang="ts">
 import { useRoute } from '#app'; // useRoute jest auto-importowany
 import { useAsyncData, useHead } from '#imports'; // useHead i useAsyncData są auto-importowane
 import type { Article } from '~/types/article'; // Załóżmy, że typ Article jest zdefiniowany
 
-// --- POBIERANIE DANYCH ARTYKUŁÓW SPORTOWYCH ---
+// --- POBIERANIE DANYCH ARTYKUŁÓW BIZNESOWYCH ---
 const {
   data: articles,
   pending: isLoading,
@@ -11,56 +28,57 @@ const {
 } = await useAsyncData<Article[]>(
   'sport-category-articles', // Unikalny klucz dla tej strony/kategorii
   () => {
-    return queryCollection('sporty') // Zakładam, że 'sporty' to Twoja kolekcja dla artykułów sportowych
-      .order('date', 'DESC')
-      .limit(15)
+    return queryCollection('sporty') // Zakładam, że 'biznes' to Twoja kolekcja dla artykułów biznesowych
+      .order('date', 'DESC') // Możesz dodać sortowanie, jeśli potrzebne
+      .limit(15)           // Możesz dodać limit, jeśli potrzebne
       .all();
   }
 );
 
-// --- KONFIGURACJA SEO DLA STRONY KATEGORII SPORT ---
+// --- KONFIGURACJA SEO DLA STRONY KATEGORII BIZNES ---
 
 const siteDomain = "https://moodzik.pl"; // Główna domena Twojej strony
 const blogName = "Moodzik.pl";
 const route = useRoute(); // Pobranie aktualnej ścieżki
 
 // Dynamiczne tworzenie pełnego URL bieżącej strony kategorii
-// route.path będzie np. "/sporty"
+// route.path będzie np. "/biznes"
 const pageUrl = `${siteDomain}${route.path}`;
 
-// Specyficzne dla strony Sport
-const sportPageTitle = `Najnowsze wiadomości sportowe, wyniki i analizy | ${blogName} Sport`;
-const sportPageDescription = `Śledź aktualne wydarzenia ze świata sportu na ${blogName}. Artykuły, wyniki na żywo, analizy meczów, wywiady z zawodnikami i wiele więcej. Twoje centrum informacji sportowych.`;
+// Specyficzne dla strony Biznes
+const biznesPageTitle = `Najnowsze wiadomości biznesowe, analizy rynkowe i finanse | ${blogName} Biznes`;
+const biznesPageDescription = `Odkryj świat biznesu z ${blogName}. Aktualne informacje gospodarcze, analizy trendów rynkowych, porady finansowe i inspirujące historie sukcesu. Twoje źródło wiedzy biznesowej.`;
 
 // Obrazki - zakładam, że są w głównym folderze /public/images
-const defaultOgpImageUrl = `${siteDomain}/images/LOGO.png`; // Sugeruję dedykowany obrazek OG dla sportu, lub ogólny
+// Rozważ stworzenie dedykowanego obrazka OG dla kategorii biznesowej
+const defaultOgpImageUrl = `${siteDomain}/images/LOGO.png`; // np. moodzik-og-biznes.png
 const blogLogoUrl = `${siteDomain}/images/LOGO.png`; // Logo strony
 
 useHead({
-  title: sportPageTitle,
+  title: biznesPageTitle,
   htmlAttrs: {
     lang: "pl",
   },
   meta: [
-    { name: "description", content: sportPageDescription },
+    { name: "description", content: biznesPageDescription },
     // Open Graph (OG) Tags
-    { property: "og:title", content: sportPageTitle },
-    { property: "og:description", content: sportPageDescription },
+    { property: "og:title", content: biznesPageTitle },
+    { property: "og:description", content: biznesPageDescription },
     { property: "og:image", content: defaultOgpImageUrl },
-    { property: "og:image:alt", content: `Wiadomości sportowe na ${blogName}` },
+    { property: "og:image:alt", content: `Wiadomości i analizy biznesowe na ${blogName}` },
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "630" },
     { property: "og:url", content: pageUrl }, // Kanoniczny URL tej strony kategorii
-    { property: "og:type", content: "object" }, // 'object' lub 'website' dla strony kategorii. 'article:section' jest też opcją.
+    { property: "og:type", content: "object" }, // 'object' lub 'website' dla strony kategorii
     { property: "og:locale", content: "pl_PL" },
     { property: "og:site_name", content: blogName },
 
     // Twitter Card
     { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: sportPageTitle },
-    { name: "twitter:description", content: sportPageDescription },
+    { name: "twitter:title", content: biznesPageTitle },
+    { name: "twitter:description", content: biznesPageDescription },
     { name: "twitter:image", content: defaultOgpImageUrl },
-    { name: "twitter:image:alt", content: `Wiadomości sportowe na ${blogName}` },
+    { name: "twitter:image:alt", content: `Wiadomości i analizy biznesowe na ${blogName}` },
   ],
   link: [
     { rel: "canonical", href: pageUrl }
@@ -71,8 +89,8 @@ useHead({
       children: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "CollectionPage", // Odpowiedni typ dla strony kategorii/listy
-        "name": sportPageTitle,
-        "description": sportPageDescription,
+        "name": biznesPageTitle,
+        "description": biznesPageDescription,
         "url": pageUrl,
         "isPartOf": { // Wskazuje, że ta strona jest częścią większej witryny
           "@type": "WebSite",
@@ -92,11 +110,11 @@ useHead({
         // Opcjonalnie: można dodać elementy listy, jeśli chcesz je jawnie oznaczyć
         // "mainEntity": {
         //   "@type": "ItemList",
-        //   "itemListElement": articles.value?.map((article, index) => ({ // Użyj .value, jeśli articles to ref
+        //   "itemListElement": articles.value?.map((article, index) => ({
         //     "@type": "ListItem",
         //     "position": index + 1,
-        //     "url": `${siteDomain}${article.path}` // Zakładając, że artykuł ma pole 'path'
-        //     // Możesz też dodać "name" dla każdego ListItem
+        //     "url": `${siteDomain}${article.path}`, // Zakładając, że artykuł ma pole 'path'
+        //     "name": article.title // Zakładając, że artykuł ma pole 'title'
         //   })) || []
         // }
       }),

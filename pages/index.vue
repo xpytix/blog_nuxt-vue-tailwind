@@ -37,7 +37,7 @@ const siteUrl = "https://moodzik.pl";
 const blogName = "Moodzik.pl"; 
 const defaultBlogDescription =
   "Odkryj najnowsze artykuły, wnikliwe analizy i poradniki ze świata afer, biznesu, sportu i lifestyle na Moodzik.pl. Twoje źródło codziennej dawki wiedzy i inspiracji.";
-const defaultOgpImageUrl = `${siteUrl}/images/moodzik-logo.png`; // Przykładowa ścieżka, upewnij się, że obrazek istnieje w /public
+const defaultOgpImageUrl = `${siteUrl}/images/LOGO.png`; // Przykładowa ścieżka, upewnij się, że obrazek istnieje w /public
 const blogLogoUrl = `${siteUrl}/images/LOGO.png`; // Przykładowa ścieżka do logo
 
 
