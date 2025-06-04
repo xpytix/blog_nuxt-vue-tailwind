@@ -35,6 +35,23 @@ const {
   }
 );
 
+
+onMounted(async () => {
+  const {
+  data: articles,
+  pending: isLoading,
+  error: fetchError,
+} = await useAsyncData<Article[]>(
+  'sport-category-articles', // Unikalny klucz dla tej strony/kategorii
+  () => {
+    return queryCollection('sporty') // Zakładam, że 'biznes' to Twoja kolekcja dla artykułów biznesowych
+      .order('date', 'DESC') // Możesz dodać sortowanie, jeśli potrzebne
+      .limit(15)           // Możesz dodać limit, jeśli potrzebne
+      .all();
+  }
+);
+
+})
 // --- KONFIGURACJA SEO DLA STRONY KATEGORII BIZNES ---
 
 const siteDomain = "https://moodzik.pl"; // Główna domena Twojej strony

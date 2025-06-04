@@ -20,7 +20,10 @@ import type { Article } from "~/types/article"; // Załóżmy, że typ Article j
 
 // --- POBIERANIE DANYCH ARTYKUŁÓW ---
 
-const {
+
+
+onMounted(async () => {
+  const {
   data: articles,
   pending: isLoading,
   error: fetchError,
@@ -30,7 +33,7 @@ const {
     .order("date", "DESC")
     .limit(15) // Pobierasz 15 najnowszych artykułów
     .all();
-});
+});})
 
 
 const siteUrl = "https://moodzik.pl"; 

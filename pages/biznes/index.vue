@@ -21,7 +21,11 @@ import { useAsyncData, useHead } from '#imports'; // useHead i useAsyncData są 
 import type { Article } from '~/types/article'; // Załóżmy, że typ Article jest zdefiniowany
 
 // --- POBIERANIE DANYCH ARTYKUŁÓW BIZNESOWYCH ---
-const {
+
+
+
+onMounted(async () => {
+  const {
   data: articles,
   pending: isLoading,
   error: fetchError,
@@ -34,6 +38,8 @@ const {
       .all();
   }
 );
+
+})
 
 // --- KONFIGURACJA SEO DLA STRONY KATEGORII BIZNES ---
 
