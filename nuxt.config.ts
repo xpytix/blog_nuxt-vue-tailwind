@@ -3,7 +3,6 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
   modules: ["@nuxt/content", "@nuxtjs/tailwindcss", "@nuxtjs/color-mode", "@nuxt/image"],
-  ssr: false,
   image: {
     formats: ["avif", "webp", "jpeg", "png", "svg"],
     quality: 80,

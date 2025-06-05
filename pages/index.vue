@@ -2,8 +2,8 @@
   <div>
     <ArticleList
       :articles-data="articles || []"
-      :pending="isLoading"
-      :error="fetchError"
+      :pending="pending"
+      :error="error"
       :ads-every-nth="3"
     />
     <div class="mt-8 pt-6 border-t border-border-theme">
@@ -14,6 +14,7 @@
 </template>
 
 <script setup lang="ts">
+
 const {
   data: articles,
   pending, // 'pending' to standardowa nazwa dla statusu ładowania w useAsyncData
