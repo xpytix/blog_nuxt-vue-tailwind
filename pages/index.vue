@@ -6,7 +6,7 @@
       :error="fetchError"
       :ads-every-nth="3"
     />
-    <div class=" mt-8 pt-6 border-t border-border-theme" >
+    <div class="mt-8 pt-6 border-t border-border-theme">
       <NewestPosts />
       <PartnerPosts />
     </div>
@@ -14,43 +14,37 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from "#app"; // useRoute jest auto-importowany, ale można dla jasności
-import { useAsyncData, useHead } from "#imports"; // useHead i useAsyncData są auto-importowane
-import type { Article } from "~/types/article"; // Załóżmy, że typ Article jest zdefiniowany
-
-// --- POBIERANIE DANYCH ARTYKUŁÓW ---
-
-
-
-onMounted(async () => {
-  const {
+const {
   data: articles,
-  pending: isLoading,
-  error: fetchError,
-} = await useAsyncData<Article[]>("home-page-articles", 
-() => {
-  return queryCollection("blog") 
-    .order("date", "DESC")
-    .limit(15) // Pobierasz 15 najnowszych artykułów
-    .all();
-});})
+  pending, // 'pending' to standardowa nazwa dla statusu ładowania w useAsyncData
+  error, // 'error' to standardowa nazwa dla obiektu błędu
+} = await useAsyncData<any[]>( // Używam ParsedContent[], możesz użyć Article[] jeśli pasuje
+  "home-page-articles", // Unikalny klucz dla tej strony/kategorii, dodałem "-index" dla jasności
+  () => {
+    // Zakładam, że masz treści w katalogu content/sporty/
+    // Jeśli "sporty" to pole kategorii wewnątrz plików .md, zapytanie byłoby inne, np.:
+    // queryContent<ParsedContent>().where({ category: 'sporty' }).sort({ date: -1 }).limit(15).find()
+    return queryCollection("blog") // Pobiera dokumenty z katalogu /content/sporty/
+      .order("date", "DESC") //Sortowanie: -1 dla DESC, 1 dla ASC; zakładam, że masz pole 'date' w frontmatter
+      .limit(15)
+      .all(); // .find() jest aliasem dla .all() i jest częściej używane
+  },
+);
 
-
-const siteUrl = "https://moodzik.pl"; 
-const blogName = "Moodzik.pl"; 
+const siteUrl = "https://moodzik.pl";
+const blogName = "Moodzik.pl";
 const defaultBlogDescription =
   "Odkryj najnowsze artykuły, wnikliwe analizy i poradniki ze świata afer, biznesu, sportu i lifestyle na Moodzik.pl. Twoje źródło codziennej dawki wiedzy i inspiracji.";
 const defaultOgpImageUrl = `${siteUrl}/images/LOGO.png`; // Przykładowa ścieżka, upewnij się, że obrazek istnieje w /public
 const blogLogoUrl = `${siteUrl}/images/LOGO.png`; // Przykładowa ścieżka do logo
 
-
 const route = useRoute();
-const pageUrl = `${siteUrl}${route.path}`; 
+const pageUrl = `${siteUrl}${route.path}`;
 
 useHead({
   title: `${blogName} - Afery, Biznes, Sport, Lifestyle | Strona Główna`, // Bardziej opisowy tytuł
   htmlAttrs: {
-    lang: "pl", 
+    lang: "pl",
   },
   meta: [
     { name: "description", content: defaultBlogDescription },
@@ -77,11 +71,8 @@ useHead({
     { name: "twitter:description", content: defaultBlogDescription },
     { name: "twitter:image", content: defaultOgpImageUrl },
     { name: "twitter:image:alt", content: `Logo ${blogName}` },
-
   ],
-  link: [
-    { rel: "canonical", href: pageUrl }
-  ],
+  link: [{ rel: "canonical", href: pageUrl }],
   script: [
     {
       type: "application/ld+json",
@@ -92,13 +83,13 @@ useHead({
         name: blogName,
         description: defaultBlogDescription,
         publisher: {
-          "@type": "Organization", 
+          "@type": "Organization",
           name: blogName,
           logo: {
             "@type": "ImageObject",
-            url: blogLogoUrl, 
-            width: 200, 
-            height: 50, 
+            url: blogLogoUrl,
+            width: 200,
+            height: 50,
           },
         },
       }),
@@ -107,5 +98,4 @@ useHead({
 });
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

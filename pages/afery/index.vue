@@ -2,7 +2,10 @@
   <div>
     <Head>
       <Title>Afery</Title>
-      <Meta name="description" content="Przeglądaj najnowsze artykuły na moim blogu." />
+      <Meta
+        name="description"
+        content="Przeglądaj najnowsze artykuły na moim blogu."
+      />
     </Head>
 
     <ArticleList
@@ -11,34 +14,33 @@
       :error="fetchError"
       :ads-every-nth="3"
     />
-
   </div>
 </template>
 
 <script setup lang="ts">
-import { useRoute } from '#app'; // useRoute jest auto-importowany
-import { useAsyncData, useHead } from '#imports'; // useHead i useAsyncData są auto-importowane
-import type { Article } from '~/types/article'; // Załóżmy, że typ Article jest zdefiniowany
+import { useRoute } from "#app"; // useRoute jest auto-importowany
+import { useAsyncData, useHead } from "#imports"; // useHead i useAsyncData są auto-importowane
+import type { Article } from "~/types/article"; // Załóżmy, że typ Article jest zdefiniowany
 
 // --- POBIERANIE DANYCH ARTYKUŁÓW O AFERACH ---
 
 
-onMounted(async () => {
-  const {
+const {
   data: articles,
-  pending: isLoading,
-  error: fetchError,
-} = await useAsyncData<Article[]>(
-  'afery-category-articles', // Unikalny klucz dla tej strony/kategorii
+  pending, // 'pending' to standardowa nazwa dla statusu ładowania w useAsyncData
+  error, // 'error' to standardowa nazwa dla obiektu błędu
+} = await useAsyncData<any[]>( // Używam ParsedContent[], możesz użyć Article[] jeśli pasuje
+  "afery-category-articles-index", // Unikalny klucz dla tej strony/kategorii, dodałem "-index" dla jasności
   () => {
-    return queryCollection('afery') // Zakładam, że 'afery' to Twoja kolekcja dla artykułów o tej tematyce
-      .order('date', 'DESC') // Możesz dodać sortowanie, jeśli potrzebne
-      .limit(15)           // Możesz dodać limit, jeśli potrzebne
-      .all();
-  }
+    // Zakładam, że masz treści w katalogu content/sporty/
+    // Jeśli "sporty" to pole kategorii wewnątrz plików .md, zapytanie byłoby inne, np.:
+    // queryContent<ParsedContent>().where({ category: 'sporty' }).sort({ date: -1 }).limit(15).find()
+    return queryCollection("afery") // Pobiera dokumenty z katalogu /content/sporty/
+      .order("date", "DESC") //Sortowanie: -1 dla DESC, 1 dla ASC; zakładam, że masz pole 'date' w frontmatter
+      .limit(15)
+      .all(); // .find() jest aliasem dla .all() i jest częściej używane
+  },
 );
-})
-
 
 // --- KONFIGURACJA SEO DLA STRONY KATEGORII AFERY ---
 
@@ -70,7 +72,10 @@ useHead({
     { property: "og:title", content: aferyPageTitle },
     { property: "og:description", content: aferyPageDescription },
     { property: "og:image", content: defaultOgpImageUrl },
-    { property: "og:image:alt", content: `Afery i kontrowersje na ${blogName}` },
+    {
+      property: "og:image:alt",
+      content: `Afery i kontrowersje na ${blogName}`,
+    },
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "630" },
     { property: "og:url", content: pageUrl }, // Kanoniczny URL tej strony kategorii
@@ -83,33 +88,35 @@ useHead({
     { name: "twitter:title", content: aferyPageTitle },
     { name: "twitter:description", content: aferyPageDescription },
     { name: "twitter:image", content: defaultOgpImageUrl },
-    { name: "twitter:image:alt", content: `Afery i kontrowersje na ${blogName}` },
+    {
+      name: "twitter:image:alt",
+      content: `Afery i kontrowersje na ${blogName}`,
+    },
   ],
-  link: [
-    { rel: "canonical", href: pageUrl }
-  ],
+  link: [{ rel: "canonical", href: pageUrl }],
   script: [
     {
       type: "application/ld+json",
       children: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "CollectionPage", // Odpowiedni typ dla strony kategorii/listy
-        "name": aferyPageTitle,
-        "description": aferyPageDescription,
-        "url": pageUrl,
-        "isPartOf": { // Wskazuje, że ta strona jest częścią większej witryny
+        name: aferyPageTitle,
+        description: aferyPageDescription,
+        url: pageUrl,
+        isPartOf: {
+          // Wskazuje, że ta strona jest częścią większej witryny
           "@type": "WebSite",
-          "url": siteDomain,
-          "name": blogName
+          url: siteDomain,
+          name: blogName,
         },
-        "publisher": {
+        publisher: {
           "@type": "Organization",
-          "name": blogName,
-          "logo": {
+          name: blogName,
+          logo: {
             "@type": "ImageObject",
-            "url": blogLogoUrl,
-            "width": 200, // Upewnij się, że te wymiary odpowiadają rzeczywistemu obrazkowi logo
-            "height": 50,
+            url: blogLogoUrl,
+            width: 200, // Upewnij się, że te wymiary odpowiadają rzeczywistemu obrazkowi logo
+            height: 50,
           },
         },
         // Opcjonalnie: można dodać elementy listy, jeśli chcesz je jawnie oznaczyć

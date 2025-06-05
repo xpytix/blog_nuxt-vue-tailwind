@@ -1,19 +1,4 @@
 <template>
-
-  
-  <div class="container mx-auto">
-    <div v-if="pending" class="flex justify-center items-center min-h-[300px]">
-      <div class="spinner" aria-label="Ładowanie"></div>
-    </div>
-    <div v-else-if="error" class="text-center py-10">
-      <p class="text-xl text-red-500 font-semibold">Wystąpił błąd</p>
-      <p class="text-text-muted mt-2">
-        Nie udało się załadować artykułów. Spróbuj ponownie później.
-      </p>
-    </div>
-  </div>
-
-
   <div class="container mx-auto">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
       <template v-for="item in newItems" :key="item.id">
