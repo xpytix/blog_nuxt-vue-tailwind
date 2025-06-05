@@ -10,15 +10,14 @@
 
     <ArticleList
       :articles-data="articles || []"
-      :pending="isLoading"
-      :error="fetchError"
+      :pending="pending"
+      :error="error"
       :ads-every-nth="3"
     />
   </div>
 </template>
 <script setup lang="ts">
-import { useRoute } from "#app"; // useRoute jest auto-importowany
-import { useAsyncData, useHead } from "#imports"; // useHead i useAsyncData są auto-importowane
+
 import type { Article } from "~/types/article"; // Załóżmy, że typ Article jest zdefiniowany
 
 // --- POBIERANIE DANYCH ARTYKUŁÓW BIZNESOWYCH ---
@@ -27,7 +26,7 @@ const {
   data: articles,
   pending, // 'pending' to standardowa nazwa dla statusu ładowania w useAsyncData
   error, // 'error' to standardowa nazwa dla obiektu błędu
-} = await useAsyncData<any[]>( // Używam ParsedContent[], możesz użyć Article[] jeśli pasuje
+} = await useAsyncData<Article[]>( // Używam ParsedContent[], możesz użyć Article[] jeśli pasuje
   "biznes-category-articles-index", // Unikalny klucz dla tej strony/kategorii, dodałem "-index" dla jasności
   () => {
     // Zakładam, że masz treści w katalogu content/sporty/

@@ -3,6 +3,18 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
   modules: ["@nuxt/content", "@nuxtjs/tailwindcss", "@nuxtjs/color-mode", "@nuxt/image"],
+  nitro: {
+    prerender: {
+      // Ignoruj ścieżki związane z Netlify Image CDN
+      // Możesz użyć bardziej ogólnego wzorca, jeśli masz inne podobne problemy
+      ignore: [
+        '/.netlify/images' // Dodanie tego powinno pomóc
+      ],
+      // Opcjonalnie, jeśli crawlLinks powoduje problemy, można by go wyłączyć,
+      // ale wtedy musisz jawnie zdefiniować wszystkie trasy do prerenderowania w 'routes'.
+      // crawlLinks: false,
+    }
+  },
   image: {
     formats: ["avif", "webp", "jpeg", "png", "svg"],
     quality: 80,

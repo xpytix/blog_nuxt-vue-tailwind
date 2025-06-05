@@ -1,6 +1,5 @@
 // ~/types/article.ts
 export interface Article {
-  _id: string;          // Automatycznie przez Nuxt Content
   _path?: string;        // Automatycznie przez Nuxt Content (ścieżka bez rozszerzenia)
 
   title: string;

@@ -87,7 +87,7 @@
             <NuxtLink
               v-for="tag in page.tags"
               :key="tag"
-              :to="`/tag/${tag} `"
+              :to="`/tag/${tag}`"
               class="bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 text-text-secondary dark:text-slate-300 px-3 py-1 rounded-full text-xs transition-colors"
             >
               {{ tag }}

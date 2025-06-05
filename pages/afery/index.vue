@@ -10,16 +10,15 @@
 
     <ArticleList
       :articles-data="articles || []"
-      :pending="isLoading"
-      :error="fetchError"
+      :pending="pending"
+      :error="error"
       :ads-every-nth="3"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { useRoute } from "#app"; // useRoute jest auto-importowany
-import { useAsyncData, useHead } from "#imports"; // useHead i useAsyncData są auto-importowane
+
 import type { Article } from "~/types/article"; // Załóżmy, że typ Article jest zdefiniowany
 
 // --- POBIERANIE DANYCH ARTYKUŁÓW O AFERACH ---

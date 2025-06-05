@@ -26,7 +26,7 @@ interface DisplayItem {
 }
 
 const props = defineProps<{
-  articlesData: Article[] | null | undefined;
+  articlesData: Article[] | [];
   pending: boolean;
   error: any;
   adsEveryNth?: number;

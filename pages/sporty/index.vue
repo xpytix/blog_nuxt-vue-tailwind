@@ -10,12 +10,14 @@
 </template>
 
 <script setup lang="ts">
+import type { Article } from '~/types/article';
+
 
 const {
   data: articles,
   pending, // 'pending' to standardowa nazwa dla statusu ładowania w useAsyncData
   error, // 'error' to standardowa nazwa dla obiektu błędu
-} = await useAsyncData<any[]>( // Używam ParsedContent[], możesz użyć Article[] jeśli pasuje
+} = await useAsyncData<Article[]>( // Używam ParsedContent[], możesz użyć Article[] jeśli pasuje
   "sport-category-articles-index", // Unikalny klucz dla tej strony/kategorii, dodałem "-index" dla jasności
   () => {
     // Zakładam, że masz treści w katalogu content/sporty/
