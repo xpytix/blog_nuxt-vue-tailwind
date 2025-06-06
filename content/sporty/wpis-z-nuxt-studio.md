@@ -27,11 +27,7 @@ Nuxt Studio to nowoczesny edytor wizualny, który pozwala na edycję treści bez
 
 3\. Po zalogowaniu wybierz właściwy projekt z listy dostępnych repozytoriów.
 
-```md
-:### Komponenty moodzik:
-::ArticleImageSlider{:items='["/images/LOGO.png", "/images/wpis-z-nuxt-studio_2.png", "/images/wpis-z-nuxt-studio_2.png", "/images/wpis-z-nuxt-studio_3.png"]'}
-::
-```
+\::ArticleImageSlider{\:items='\["/images/LOGO.png", "/images/wpis-z-nuxt-studio\_2.png", "/images/wpis-z-nuxt-studio\_2.png", "/images/wpis-z-nuxt-studio\_3.png"]'} ::
 
 \## Krok 2: Tworzenie Nowej Strony lub Wpisu
 
