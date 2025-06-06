@@ -1,5 +1,15 @@
 <template>
   <div>
+    <Head>
+      <Title>Sporty</Title>
+      <Meta
+        name="description"
+        content="Przeglądaj najnowsze artykuły na moim blogu."
+      />
+    </Head>
+
+    <SwiperHero :slides="(articles || []).slice(0, 3)"/>
+
     <ArticleList
       :articles-data="articles || []"
       :pending="pending"

@@ -1,12 +1,20 @@
 <template>
+
   <div>
+    <SwiperHero :slides="(articles || []).slice(0, 3)"/>
+
+    <BestPartner
+      logoUrl="/images/mainPartner.png"
+      partnerLink="https://stronapartnera.com"
+      altText="Nazwa Partnera XYZ"
+    />
     <ArticleList
       :articles-data="articles || []"
       :pending="pending"
-      :error="error"
+      :error="error" 
       :ads-every-nth="3"
     />
-    <div class="mt-8 pt-6 border-t border-border-theme">
+    <div class="mt-4 pt-6 border-t border-border-theme">
       <NewestPosts />
       <PartnerPosts />
     </div>
@@ -33,6 +41,7 @@ const {
       .all(); // .find() jest aliasem dla .all() i jest częściej używane
   },
 );
+
 
 const siteUrl = "https://moodzik.pl";
 const blogName = "Moodzik.pl";

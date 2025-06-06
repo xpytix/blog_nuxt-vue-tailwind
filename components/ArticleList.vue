@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto">
+  <div class="container mx-auto px-4 py-8">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
       <template v-for="item in newItems" :key="item.id">
         <div v-if="item.type === 'article' && item.data" class="flex">

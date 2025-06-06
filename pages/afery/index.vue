@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <Head>
       <Title>Afery</Title>
       <Meta
@@ -7,6 +8,7 @@
         content="Przeglądaj najnowsze artykuły na moim blogu."
       />
     </Head>
+    <SwiperHero :slides="(articles || []).slice(0, 3)"/>
 
     <ArticleList
       :articles-data="articles || []"

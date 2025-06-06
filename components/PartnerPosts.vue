@@ -4,7 +4,7 @@
 
       <div
         v-else-if="articles && articles.length > 0"
-        class="container mx-auto">
+        class="container mx-auto px-4 py-8">
         <h2
           class="text-2xl font-bold uppercase sm:text-3xl font-heading text-text-primary mb-6 sm:text-left" >
           Sprawdź co słychać u Naszych Partnerów:

@@ -1,7 +1,7 @@
 <template>
   <div
-    v-if="articles.length > 0"
-  class="container mx-auto mb-8 "
+    v-if="articles"
+  class="container mx-auto px-4 py-8 "
   >
     <h2
     class="text-2xl font-bold uppercase sm:text-3xl font-heading text-text-primary mb-6 sm:text-left" >
