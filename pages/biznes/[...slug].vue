@@ -99,7 +99,7 @@
         </div>
       </article>
       <div
-        class="prose dark:prose-invert lg:prose-xl mx-auto bg-background-secondary p-6 sm:p-8 md:p-10 rounded-lg shadow-lg"
+      class="prose dark:prose-invert lg:prose-xl mx-auto bg-background-secondary rounded-lg shadow-lg"
       >
       <NewestPosts/>
       <PartnerPosts/>

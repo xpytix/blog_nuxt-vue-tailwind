@@ -4,7 +4,7 @@
   >
     <TheHeader />
 
-    <main class="container bg-background-secondary mx-auto ">
+    <main class="bg-background-secondary mx-auto ">
       <slot></slot>
     </main>
     <TheFooter />

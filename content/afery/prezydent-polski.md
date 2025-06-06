@@ -7,7 +7,7 @@ title: "Karol Nawrocki nowym prezydentem Polski! Znamy wyniki wyborów 2025"
 description: "Historyk Karol Nawrocki wygrywa wybory prezydenckie w Polsce, pokonując Rafała Trzaskowskiego. Poznaj sylwetkę nowego prezydenta i kluczowe punkty jego programu."
 # Podsumowanie dla wyszukiwarek i udostępnień, zachęcające do kliknięcia.
 
-date: 2025-06-02 # Format RRRR-MM-DD.
+date: 2025-06-01 # Format RRRR-MM-DD.
 # Data publikacji.
 
 # === Uzupełniające Informacje o Treści (Ważne dla SEO i UX) ===
@@ -37,7 +37,7 @@ tags:
 
 # === Opcjonalne, ale Zalecane dla Pełniejszego SEO i Funkcjonalności ===
 
-dateModified: 2025-06-02 # Format RRRR-MM-DD.
+dateModified: 2025-06-01 # Format RRRR-MM-DD.
 # Opcjonalnie: Data ostatniej modyfikacji. Ważna dla SEO.
 
 # slug: "karol-nawrocki-prezydent-polski-wybory-2025"
@@ -55,34 +55,71 @@ dateModified: 2025-06-02 # Format RRRR-MM-DD.
 
 # === Treść Artykułu (Markdown) ===
 ---
+**Warszawa, 2 czerwca 2025 r.** – Polska ma nowego prezydenta elekta. Po zaciętej drugiej turze wyborów, która odbyła się 1 czerwca, Państwowa Komisja Wyborcza ogłosiła oficjalne wyniki. Zwycięzcą okazał się **Karol Nawrocki**.
 
-**Warszawa, 2 czerwca 2025 r.** – Po zaciętej drugiej turze wyborów prezydenckich, która odbyła się 1 czerwca 2025 roku, Państwowa Komisja Wyborcza ogłosiła oficjalne wyniki. Nowym prezydentem elektem Rzeczypospolitej Polskiej został **Karol Nawrocki**, który zdobył **50,89%** głosów, pokonując Rafała Trzaskowskiego, na którego zagłosowało 49,11% wyborców. Frekwencja w drugiej turze wyniosła **71,63%**.
+::KeyInfoBox
+---
+title: Oficjalne Wyniki Wyborów
+---
+- **Karol Nawrocki:** `50,89%`
+- **Rafał Trzaskowski:** `49,11%`
+- **Frekwencja:** `71,63%`
+::
 
-Karol Nawrocki obejmie urząd prezydenta 6 sierpnia 2025 roku, po zaprzysiężeniu przed Zgromadzeniem Narodowym, zastępując ustępującego prezydenta Andrzeja Dudę.
+Karol Nawrocki obejmie urząd prezydenta 6 sierpnia 2025 roku. Zastąpi na tym stanowisku ustępującego prezydenta Andrzeja Dudę po zaprzysiężeniu przed Zgromadzeniem Narodowym.
+
+::ArticleImageSlider{:items='["/images/afery/prezydent-polski.jpg", "/images/biznes/btc-ath.jpg"]'}
+::
 
 ## Kim jest Karol Nawrocki?
 
-Urodzony 3 marca 1983 roku w Gdańsku, Karol Nawrocki jest z wykształcenia historykiem. W 2013 roku uzyskał stopień doktora nauk humanistycznych na Uniwersytecie Gdańskim, a w 2023 roku ukończył studia International MBA in Strategy, Programme and Project Management na Politechnice Gdańskiej.
+Nowy prezydent elekt urodził się 3 marca 1983 roku w Gdańsku. Z wykształcenia jest historykiem – w 2013 roku uzyskał stopień doktora nauk humanistycznych na Uniwersytecie Gdańskim. Ukończył również studia International MBA in Strategy, Programme and Project Management na Politechnice Gdańskiej (2023).
 
-Jego kariera zawodowa od 2009 roku była ściśle związana z Instytutem Pamięci Narodowej, gdzie pełnił szereg funkcji, w tym naczelnika Oddziałowego Biura Edukacji Publicznej IPN w Gdańsku, a od lipca 2021 roku piastował stanowisko prezesa tej instytucji. W latach 2017-2021 był dyrektorem Muzeum II Wojny Światowej w Gdańsku. Jest autorem i współautorem licznych publikacji naukowych i popularnonaukowych poświęconych historii Polski. Prywatnie jest żonaty i ma troje dzieci.
+Jego kariera zawodowa od 2009 roku była ściśle związana z **Instytutem Pamięci Narodowej**, gdzie od lipca 2021 roku pełnił funkcję prezesa. Wcześniej, w latach 2017-2021, był dyrektorem Muzeum II Wojny Światowej w Gdańsku.
 
-Karol Nawrocki startował w wyborach jako kandydat obywatelski, ciesząc się poparciem Prawa i Sprawiedliwości. Sam podkreśla, że nigdy nie był członkiem żadnej partii politycznej.
+Karol Nawrocki startował w wyborach jako kandydat obywatelski z poparciem Prawa i Sprawiedliwości, podkreślając, że nigdy nie należał do partii politycznej. Prywatnie jest żonaty i ma troje dzieci.
+
+
 
 ## Kluczowe Punkty Programu Wyborczego
 
-Kampania Karola Nawrockiego przebiegała pod hasłem "Po pierwsze Polska, po pierwsze Polacy". Jego program wyborczy koncentrował się na pięciu głównych filarach: "Dobrobyt", "Normalne Państwo", "Bezpieczeństwo", "Rozwój" oraz "Kontrakt podatkowy".
+Kampania Karola Nawrockiego przebiegała pod hasłem **"Po pierwsze Polska, po pierwsze Polacy"**. Jego program koncentrował się na pięciu głównych filarach. Oto najważniejsze obietnice:
 
-Wśród kluczowych obietnic wyborczych nowego prezydenta elekta znalazły się:
+### 🛡️ Bezpieczeństwo i Suwerenność
+- Zwiększenie wydatków na obronność do **5% PKB**.
+- Utrzymanie liczebności armii na poziomie **300 tys. żołnierzy**.
+- Wypowiedzenie unijnego paktu migracyjnego.
+- Deklaracja, że polscy żołnierze nie pojadą na Ukrainę.
 
-* **Wymiar społeczny:** Zapewnienie pierwszeństwa dla Polaków w dostępie do usług publicznych, wypowiedzenie unijnego "Zielonego Ładu", sprzeciw wobec adopcji dzieci przez pary homoseksualne oraz "ideologii w szkołach".
-* **Bezpieczeństwo państwa:** Zapowiedź wypowiedzenia paktu migracyjnego, zwiększenie wydatków na obronność do 5% PKB oraz utrzymanie liczebności armii na poziomie 300 tysięcy żołnierzy. Karol Nawrocki zadeklarował również, że polscy żołnierze nie zostaną wysłani na Ukrainę.
-* **Gospodarka i finanse publiczne:** Sprzeciw wobec podnoszenia podatków, wprowadzenie konstytucyjnej gwarancji dziedziczenia bez podatku, obniżenie stawki VAT z 23% do 22%, wprowadzenie zerowego PIT dla rodzin z co najmniej dwójką dzieci, podniesienie drugiego progu podatkowego oraz likwidacja tzw. podatku Belki. Nowy prezydent elekt opowiada się również przeciwko wprowadzeniu w Polsce waluty euro.
-* **Polityka zagraniczna:** Dążenie do utrzymania silnej i podmiotowej pozycji Polski w Unii Europejskiej, przy jednoczesnym poszanowaniu suwerenności narodowej, a także pielęgnowanie strategicznych relacji ze Stanami Zjednoczonymi.
+
+
+### 💰 Gospodarka i Podatki
+- Sprzeciw wobec podniesienia podatków i wprowadzenia waluty euro.
+- Obniżenie stawki **VAT z 23% do 22%**.
+- Wprowadzenie **zerowego PIT** dla rodzin z co najmniej dwójką dzieci.
+- Likwidacja tzw. **podatku Belki**.
+- Gwarancja dziedziczenia bez podatku.
+
+### 👨‍👩‍👧‍👦 Społeczeństwo i Wartości
+- Zapewnienie pierwszeństwa dla Polaków w dostępie do usług publicznych.
+- Wypowiedzenie unijnego "Zielonego Ładu".
+- Sprzeciw wobec adopcji dzieci przez pary homoseksualne.
+
+### 🌍 Polityka Zagraniczna
+- Utrzymanie silnej i podmiotowej pozycji Polski w Unii Europejskiej.
+- Pielęgnowanie strategicznych relacji ze Stanami Zjednoczonymi.
 
 ## Pierwsze Słowa po Ogłoszeniu Wyników
 
-W pierwszych komentarzach po ogłoszeniu wyników wyborów, Karol Nawrocki podziękował Polakom za oddane głosy i zaufanie. Podkreślił, że za nim "ciężka i momentami brutalna kampania wyborcza". Zapewnił, że jako głowa państwa będzie godnie reprezentować Polskę na arenie międzynarodowej i "nie odpuści żadnej z ważnych dla Polski i Polaków spraw". Wyraził również wolę budowania kraju bezpiecznego, silnego gospodarczo, dbającego o najsłabszych obywateli oraz szanującego swoją wielowiekową tradycję i historię.
+W pierwszych komentarzach po ogłoszeniu wyników Karol Nawrocki podziękował Polakom za zaufanie. Zapewnił, że jako głowa państwa będzie godnie reprezentować Polskę i budować kraj bezpieczny, silny gospodarczo i szanujący swoją tradycję.
+
+> Za nami ciężka i momentami brutalna kampania wyborcza. (...) Nie odpuszczę żadnej z ważnych dla Polski i Polaków spraw.
 
 ## Reakcje Międzynarodowe
 
-Zwycięstwa Karolowi Nawrockiemu pogratulowało już wielu przywódców i polityków z całego świata, w tym m.in. prezydent Czech Petr Pavel, przewodnicząca Komisji Europejskiej Ursula von der Leyen, prezydent Francji Emmanuel Macron, premier Węgier Viktor Orbán oraz prezydent Litwy Gitanas Nausėda.
+Gratulacje nowemu prezydentowi elektowi złożyli już m.in.:
+- **Ursula von der Leyen** (Przewodnicząca Komisji Europejskiej)
+- **Emmanuel Macron** (Prezydent Francji)
+- **Petr Pavel** (Prezydent Czech)
+- **Gitanas Nausėda** (Prezydent Litwy)
+- **Viktor Orbán** (Premier Węgier)

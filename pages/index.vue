@@ -1,7 +1,6 @@
 <template>
-
   <div>
-    <SwiperHero :slides="(articles || []).slice(0, 3)"/>
+    <SwiperHero :slides="(articles || []).slice(0, 3)" />
 
     <BestPartner
       logoUrl="/images/mainPartner.png"
@@ -11,10 +10,12 @@
     <ArticleList
       :articles-data="articles || []"
       :pending="pending"
-      :error="error" 
+      :error="error"
       :ads-every-nth="3"
     />
-    <div class="mt-4 pt-6 border-t border-border-theme">
+    <div
+      class="prose dark:prose-invert lg:prose-xl mx-auto bg-background-secondary rounded-lg shadow-lg"
+    >
       <NewestPosts />
       <PartnerPosts />
     </div>
@@ -22,8 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Article } from '~/types/article';
-
+import type { Article } from "~/types/article";
 
 const {
   data: articles,
@@ -41,7 +41,6 @@ const {
       .all(); // .find() jest aliasem dla .all() i jest częściej używane
   },
 );
-
 
 const siteUrl = "https://moodzik.pl";
 const blogName = "Moodzik.pl";
