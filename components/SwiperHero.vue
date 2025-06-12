@@ -1,61 +1,35 @@
 <template>
   <div class="relative w-full hero-swiper-container bg-background-primary">
-    <swiper
-      :loop="true"
-      :pagination="{
-        type: 'progressbar',
-      }"
-      :modules="modules"
-      :autoplay="{
-        delay: 5000,
-        disableOnInteraction: false,
-      }"
-      class="myHeroSwiper h-[60vh] md:h-[45vh] lg:h-[45vh]"
-    >
+    <swiper :loop="true" :pagination="{
+      type: 'progressbar',
+    }" :modules="modules" :autoplay="{
+      delay: 5000,
+      disableOnInteraction: false,
+    }" class="myHeroSwiper h-[60vh] md:h-[45vh] lg:h-[65vh]">
       <swiper-slide v-for="(slide, index) in slides" :key="index">
-        <NuxtImg
-          :src="slide.image"
-          :alt="slide.title || 'Slide image'"
-          class="absolute inset-0 w-full h-full object-cover"
-          draggable="false"
-          densities="1x 2x"
-          sizes="100vw md:100vw lg:100vw"
-          format="webp"
-          :preload="index === 0"
-          :loading="index === 0 ? 'eager' : 'lazy'"
-          :fetchpriority="index === 0 ? 'high' : 'auto'"
-        />
-        <div
-          v-if="slide.path"
-          :class="[
-            'absolute inset-0 bg-gradient-to-t to-transparent z-10',
-            getGradientClasses(slide.path), // Dynamiczne klasy dla gradientu
-          ]"
-        ></div>
+        <NuxtImg :src="slide.image" :alt="slide.title || 'Slide image'"
+          class="absolute inset-0 w-full h-full object-cover object-center" draggable="false" densities="1x 2x"
+          sizes="100vw md:100vw lg:100vw" format="webp" :preload="index === 0" :loading="index === 0 ? 'eager' : 'lazy'"
+          :fetchpriority="index === 0 ? 'high' : 'auto'" />
+        <div v-if="slide.path" :class="[
+          'absolute inset-0 bg-gradient-to-t to-transparent z-10',
+          getGradientClasses(slide.path), // Dynamiczne klasy dla gradientu
+        ]"></div>
 
         <div class="container mx-auto h-full flex items-end">
-          <div
-            class="w-full z-20 p-6 sm:p-8 md:p-10 lg:p-12 text-left max-w-xl xl:max-w-2xl"
-          >
+          <div class="w-full z-20 p-6 sm:p-8 md:p-10 lg:p-12 text-left max-w-xl xl:max-w-2xl">
             <h2
-              class="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-3 md:mb-4 leading-tight text-text-on-accent drop-shadow-md"
-            >
+              class="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-3 md:mb-4 leading-tight text-text-on-accent drop-shadow-md">
               {{ truncateWords(slide.title, titleWordLimit) }}
             </h2>
-            <p
-              v-if="slide.description"
-              class="text-base sm:text-lg font-sans mb-5 md:mb-6 text-text-on-accent/90 drop-shadow-sm"
-            >
+            <p v-if="slide.description"
+              class="text-base sm:text-lg font-sans mb-5 md:mb-6 text-text-on-accent/90 drop-shadow-sm">
               {{ truncateWords(slide.description, subtitleWordLimit) }}
             </p>
-            <NuxtLink
-              :to="slide.path"
-              v-if="slide.path"
-              :class="[
-                'bg-transparent text-white border-2 border-white font-semibold py-2.5 px-6 sm:py-3 sm:px-8 rounded-lg text-sm sm:text-base transition-all duration-300 inline-block shadow-md hover:shadow-lg',
-                getButtonHoverClasses(slide.path), // Dynamiczne klasy dla przycisku
-              ]"
-            >
+            <NuxtLink :to="slide.path" v-if="slide.path" :class="[
+              'bg-transparent text-white border-2 border-white font-semibold py-2.5 px-6 sm:py-3 sm:px-8 rounded-lg text-sm sm:text-base transition-all duration-300 inline-block shadow-md hover:shadow-lg',
+              getButtonHoverClasses(slide.path), // Dynamiczne klasy dla przycisku
+            ]">
               Dowiedz się więcej
             </NuxtLink>
           </div>
@@ -152,14 +126,10 @@ const modules = [Pagination, Autoplay];
   right: 0;
   width: 100%;
   height: 5px !important;
-  background: rgba(
-    var(--color-text-primary-rgb, 200 200 200) / 0.25
-  ) !important;
+  background: rgba(var(--color-text-primary-rgb, 200 200 200) / 0.25) !important;
 }
 
-.hero-swiper-container
-  .swiper-pagination-progressbar
-  .swiper-pagination-progressbar-fill {
+.hero-swiper-container .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
   background: rgb(var(--color-text-primary)) !important;
 }
 </style>
